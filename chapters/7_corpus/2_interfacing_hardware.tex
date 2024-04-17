@@ -1,0 +1,35 @@
+\chapter{Interfacing hardware}
+\label{chap:hardware}
+% [Deze sectie draait rond HAL, wat het is, waarom het nodig is en waarom het nuttig is om een gelijkaardige API te voorzien. Ter inspiratie kan de \verb|embedded_hal| scope en design goals genomen worden.]
+
+Embedded devices have a high degree of diversity of possible constraints, e.g. 64-bit support, memory size and the availability of hardware units like a memory protection unit. Making it difficult for drivers to support any number of target platforms, unless these platforms are abstracted away behind a shared API. This is the purpose of a \gls{HAL}. It is important that this layer hides device-specific details and that it is generic across devices. 
+
+For Rust, this \gls{HAL} is, aptly, named \href{https://github.com/rust-embedded/embedded-hal}{embedded-hal} and provides traits for using peripherals commonly available in microcontrollers such as \gls{GPIO}, \gls{UART}, \gls{SPI} or \gls{I2C}. There exists many crates that implement these interfaces for a certain microcontroller family or a system running some \gls{OS}. Furthermore, there are also loads of driver crates that use the \texttt{embedded-hal} interface to support all these families and systems. A curated list can be found in the \href{https://github.com/rust-embedded/awesome-embedded-rust}{Awesome Embedded Rust} repository.
+
+Sadly, the notion of a community-wide shared interface is not universally present in all embedded communities. The C/C++ community is such an example, where there isn't one \gls{HAL} to rule them all.
+
+\section{Different versions of \texttt{embedded-hal}}
+
+Unfortunately, there are two major versions of \texttt{embedded-hal}, i.e. $0.2.7$ and $1.0$, which are incompatible with one another. 
+As version 1.0 was only released on the ninth of January 2024, it is still fairly novel. Thus, crates have a wildly varying degree of compliance with this version. 
+
+Broadly speaking, there are four major changes \cite{hal:1}. Firstly, traits have been simplified and others have been merged to remove interopability gotchas. 
+Secondly, async versions of the blocking traits are now available in the \texttt{embedded-hal-async} crate. Thirdly, there is now support for \gls{SPI} bus sharing. Lastly, there is improved error handling.
+
+There is \href{https://github.com/ryankurte/embedded-hal-compat}{a crate} that tries to provide a compatibility layer between these two versions, but the latest supported version is merely a release candidate of $1.0$. Thus, the crate is not really practically useful.
+
+\section{Peripheral Access Crates}
+
+\gls{SVD} files are \texttt{XML} files typically provided by silicon vendors which descibe the memory map of a device. Via \href{https://crates.io/crates/svd2rust}{the \texttt{svd2rust} crate} it is possible to generate a mostly-safe Rust wrapper. Further discussion is out of scope as this is a very thin wrapper, and usually depended upon by \gls{HAL} authors.
+
+\section{Running the solution}
+\label{sec:running}
+
+When the target platform is an \gls{OS}, it is typically fairly easy to build and execute a software solution, plainly by doing this on the target device itself, or by cross-compilation from a morepotent device. This is not the case for an \gls{MCU}, here, only cross-compilation is possible. Due to the constrained nature of memory on an \gls{MCU}, the memory-layout also needs to be specified.
+
+In the case of a Raspberry Pi Pico, compilation results in an \texttt{UF2} and an \texttt{ELF} file. The former is a file format developed by Microsoft for flashing microcontrollers over mass storage connections. The latter is used by the debugger.
+
+To pogram the flash on the Pico, the \texttt{BOOTSEL} button needs to be held. Forcing it into USB Mass Storage Mode. Then, you can move a \texttt{UF2} file onto it. Whereupon the \texttt{RP2040} processor of the Pico will reboot, unmount itself, and run the flashed code. Other boards could require pulling down the flash \texttt{CS} pin, which is how the \texttt{BOOTSEL} button works on the pico, using an exposed \gls{SWD} interface, also an option for the Pico, or have a reset button that needs to be double-pressed.
+
+\gls{SWD} is a standard interface on Cortex-M based microcontrollers, which the host machine can use to reset the board, load code into flash, and set the code running. Without the need to manuallyl reset the board or hold the \texttt{BOOTSEL} button. The easiest way to connect with this interface on a Pico is to make use of a debug probe via \href{https://probe.rs/}{probe-rs}. This also unlocks the ability to print to \texttt{STDOUT} or even utilize the \href{https://microsoft.github.io/debug-adapter-protocol/overview}{Debug Adapter Protocol}.
+

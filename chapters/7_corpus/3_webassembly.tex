@@ -1,0 +1,54 @@
+\chapter{WebAssembly}
+\label{chap:wasm}
+% [Algemene uitleg van wat WebAssembly is en waarom we het buiten het web willen kunnen gebruiken. Hiervoor wordt er dan verwezen naar de lagere memory footprint ten opzichte van docker. Alsook moet er verteld worden wat de previews zijn en de timeline van wanneer ze gereleased zijn. Spinup time is ook een zeer belangrijke om te vermelden.]
+
+\gls{Wasm} is a binary instruction format for a stack-based \gls{VM}. It is designed as a portable compilation target for programming languages. Binaries have a \texttt{.wasm} file extension, there's also a textual representation which has a \texttt{.wat} extension. This enables deployment on the web for client and server applications. Examples of web applications using this technology are \href{https://photoshop.adobe.com/}{Adobe Photoshop} or \href{https://earth.google.com/web}{Google Earth}.
+
+Although the name implies it, \gls{Wasm} is not merely limited to the web. There are runtimes that enable execution on a myriad of platforms, ranging from Linux devices to smartphones or even microcontrollers. All possible through the usage of a system interface, called \gls{WASI}.
+
+\section{WebAssembly System Interface}
+\label{sec:wasi}
+
+\gls{WASI}~\cite{wasi} is a modular collection of \gls{API}'s defined with the \gls{WIT} IDL, see section~\ref{sec:wit}, that provide a secure and portable way to access several operating-system-like features such as filesystems, networking, clocks and random numbers. This collection is developed under the governance of the \gls{WASI} Subgroup, a subgroup of the WebAssembly Community Group.
+
+In this subgroup, the following design principles are core:
+
+\begin{itemize}
+    \item Capability-based security: All access to external resources is provided by capabilities, see chapter~\ref{chap:component_model}.
+    \item Interposition: A Webassembly instance can implement a given WASI interface, and the consumer WebAssembly instance can then use this implementation transparently.
+    \item Compatibility: If possible, keep the \gls{API} free of Compatibility concerns, and provide compatibility through libraries.
+    \item Portability: The exact meaning of this is specific to each \gls{API}, but in globo it means that no engine should need to implement every \gls{API} in \gls{WASI}.
+    \item Modularity: The component model's worlds mechanism is used, in order to allow specific sets of APIs to be described which meet the needs of different environments. See chapter~\ref{chap:component_model}.
+\end{itemize}
+
+
+% [Hier vergelijking met docker doen.]
+
+\subsection{Versions}
+\label{sec:versions}
+
+Originally \gls{WASI} launched under the name: \texttt{WebAssembly System Interface, snapshot 1}, nowadays called \texttt{0.1} or \texttt{Preview 1}. On the twenty-fifth of January 2024, \texttt{Preview 2} was launched. Following up will be a \texttt{Preview 3}, and then the \texttt{1.0} release.
+
+The flagship feature that \texttt{0.2} brought to the table is the component model, see chapter~\ref{chap:component_model}. Furthermore, two \gls{WIT} worls, see section~\ref{sec:wit}, are now included:
+
+\begin{itemize}
+    \item \texttt{wasi-cli}: A command-line interface, roughly corresponding to \texttt{POSIX}.
+    \item \texttt{wasi-http}: An \texttt{HTTP} proxy.
+\end{itemize}
+
+The major banner of the upcoming \texttt{0.3} is asynchronous support. The exact details of what this asynchrony entails is yet to be determined.
+
+\section{Community}
+\label{sec:community}
+
+As mentioned in section~\ref{sec:wasi}, standardization is performed under the supervision of the \gls{WASI} Subgroup. As a part of W3C's WebAssembly Community Group, it is the key player in the standardization process. With respect to the implementations, this is the \href{https://bytecodealliance.org/}{Bytecode Alliance}, a nonprofit organization of companies. Not every company wishes to part of these bodies, e.g. \href{https://wasmer.io/}{Wasmer}, [zijn er nog goede voorbeelden?].
+
+\section{Runtimes}
+\label{sec:runtimes}
+% [Wasmtime uitvoerig bespreken, maar ook de meest belangrijke andere runtimes. Het is niet de bedoeling om echt in depth te gaan vergelijken en te benchmarken, maar om gewoon wat te schetsen wat er allemaal is. Daarnaast ook vertellen in welke mate, en hoe, je een preview2 component op een runtime kan laten draaien dat geen support heeft voor het component model. Misschien ook kort iets rond changes die in Wasmtime kunnen gebeuren om meer embedded devices te supporten.]
+
+A runtime system is an infrastructure that participates in the creation and running of \gls{Wasm} binaries. Typically, the components of this are the execution environment, or application \gls{VM}, to provide a place for the program to run, the compiler front-end and/or the compiler back-end for the necessary analysis, transformations and optimization.
+
+The Bytecode Alliance fosters two runtimes, \href{https://github.com/bytecodealliance/wasmtime}{Wasmtime} and \href{https://github.com/bytecodealliance/wasm-micro-runtime}{WAMR}. The former can be seen as a more general-purpose runtime, focussing on server-side and non-web embeddings with components. Making it the de-facto runtime. While \gls{WAMR} specifically is designed to be as lightweight as possible, targeting embedded devices and the edge. This translates itself into the provided features and the supported guest languages. For example, Wasmtime has full component model support, while \gls{WAMR} has it planned for end of 2024. With regards to the supported languages, \gls{WAMR} only supports C/C++. A toolkit for Rust has been published in March 2024. On the other hand, Wasmtime has first-class support for eight languages, and community support for a further two. Furthermore, there's active effort in making this runtime lighter to run. One such effort is the inclusion of a Rust \texttt{no\_std} option.
+
+Besides these two there are numerous ones provided by other parties, in varying degrees of completeness, targeting other use-cases. There's for example \href{https://github.com/bytecodealliance/jco}{jco}, specialized for JavaScript, \href{https://github.com/bytecodealliance/componentize-py}{componentize.py}, for Python, or \href{https://github.com/dylibso/chicory}{Chicory}, which runs on the Java \gls{VM}. 

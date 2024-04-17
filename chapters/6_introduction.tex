@@ -1,0 +1,24 @@
+\chapter{Introduction}
+\label{chap:intro}
+
+% Dit kan gezien worden als een omgekeerde driehoek
+
+% 1. Wat is het maatschappelijke probleem?
+% 	1. Voorbeeld: Updaten van auto's
+% 	2. Er mag gelinkt worden met nieuwsartikels
+
+There are countless software solutions running on critical hardware, where sudden failure could result in the loss of people's live, e.g. programs guiding surgeons during operations or cars. Furthermore, in the case of cars, there's a clear trend towards more advanced infotainment systems and to update these remotely without the need to visit an auto mechanic. When such an update fails to perform, it should be possible to rollback unbeknownst to the driver.
+
+% TODO: Brug naar lange termijn onderhoud
+% 2. Firmware, heel lang onderhouden en zo brugje naar Wasm maken
+% 	1. Probleem: Wasm heeft geen manier om met hardware te praten
+% 	2. En dan dit probleem uitdiepen: Wasi, I2C
+
+In addition, with the advent of generational AI's like ChatGPT, worldwide GPU usage has exploded. Directly translating in an explosion of energy and water usage to run all and cool all this harware inside data-centres. Sadly, these GPUs have long-lasting periods of idly running, waiting for requests. It should be possible to start a GPU when running a request, but otherwise keep it off, without significant overhead in terms of latency.
+
+% TODO: Hierop is de hele korte startup times en overhead van Wasm ook de oplossing
+
+
+% 3. Onderzoeksvragen en kort overzicht
+% 	1. Hoe kan het secure gebeuren?
+% 	2. Wat is de performance?

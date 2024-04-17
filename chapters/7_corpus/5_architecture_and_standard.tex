@@ -1,0 +1,41 @@
+\chapter{Architecture and standard}
+\label{chap:architecture}
+% [Vertellen over de proposal, hoe championship werkt, wat de huidige status is en wat er moet gedaan worden om het te advancen. Daarnaast ook de laatste status rond SIG Embedded vertellen en de missie ervan.]
+
+% 1. Primer om te vertellen wat nodig is om dan de rest te snappen
+As stated previously in section~\ref{sec:wasi}, \gls{WASI} is a collection of \gls{API}'s. In order for \gls{I2C} support inside \gls{WASI}, an \gls{API} should thus be defined and standardized. The \gls{API} is publicly available inside the \href{https://github.com/WebAssembly/wasi-i2c}{wasi-i2c} repository.
+
+Software developed without any reviews, nor feedback, is software that is doomed to fail at some point. The same principle applies to the standardization of a proposal. For feedback, the input from the \gls{Wasm} community, see section~\ref{sec:community}, is invaluable. Besides this community, there's also a subcommunity of people interested in the combination of \gls{Wasm} and embedded devices. To ratify this subcommunity, a request for a \gls{SIG} Embedded has been opened with the Bytecode Alliance.
+
+\section{The proposal process}
+
+Stated in section~\ref{sec:wasi}, \gls{WASI} is under the goverance of the \gls{WASI} Subgroup. This subgroup is further split up into the Community Group and the Working Group. The purpose of the Community Group is to attempt to address all concerns, but no 100\% consensus is needed. The Working Group, on the other hand, is there to finalize and ratify mostly complete specifications plus test suites from the Community Group.
+
+% This means that they are responsible for any proposed changes to this collection of interfaces to be thoroughly vetted by the community.
+
+The process is split up into five stages of standardization:
+
+\begin{description}
+    \item[Phase 0.] Pre-Proposal: The Community Group decides whether the pre-proposal is in scope for \gls{WASI}.
+    \item[Phase 1.] Proposement of the feature: An overview document must be produced that specifies the feature with reasonably precise and complete language.
+    \item[Phase 2.] Specification text is available: A test suite should be added, and it should pass on the prototype or some other implementation.
+    \item[Phase 3.] The specification gets implemented by engines.
+    \item[Phase 4.] The feature is being standardized: Ownership gets transferred from the Community Group to the Working Group, and two or more Web \gls{VM}'s have implemented the feature.
+    \item[Phase 5.] The feature is standardized: Editors perform final editorial tweaks and merge the feature into the main branch of the primary specification repository.
+
+\end{description}
+
+To go from the one stage to the following, a vote in the subgroup needs to be passed. Except to enter phase 0, here the proposal is still merely an idea.
+
+It is the convention that a proposal has the \texttt{wasi-} prefix. This is the reason the \gls{I2C} proposal is called \texttt{wasi-i2c}.
+
+\subsection{Current \texttt{wasi:i2c} phase}
+
+Currently, the \gls{I2C} proposal is in the first phase, with ongoing effort to fullfill the criteria to pass the vote to the second phase. Specifically, a broad enough of a consensus needs to be reached on the capability criteria. This effort is led under the guidance of certain champions. For \texttt{wasi:i2c} these are Friedrich Vandenberghe, Merlijn Sebrechts and Maximilian Seidler. Both Friedrich and Merlijn are from UGent, Maximilian is from Siemens. This mix of academians and people from the industry ensures ongoing standardization effort and actual usage of the feature.
+
+\section{Alternatives to Wasm}
+
+% 2. Bredere exploratie voor alternatieve oplossingen
+% 	1. Hoe I2C aangesproken wordt vanuit nodejs (antwoord: ze geven linux handle) en via linux
+% 	2. WebUSB: Dit is via js dus barf
+% 	3. Hier kan er hard gegaan worden op linken met academische artikels

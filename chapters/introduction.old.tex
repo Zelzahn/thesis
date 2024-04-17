@@ -1,0 +1,18 @@
+\chapter{Introduction}
+\label{chap:intro}
+
+Developing applications to be portable and secure is an ever returning design challenge. Hampered by the vast heterogeneity of used software systems, especially in embedded devices.
+One solution for this is containerization, i.e. the packaging of software code with just the files and libraries required to run it consistently on any infrastructure. Presently, Docker is the most prevalent containerization solution.
+
+Released in 2013, it is a platform as a service (PaaS) that provides an OS-level virtualization that uses fewer resources than virtual machines. Under the hood, it uses the Moby Project, a collection of components and tools which are the open-source components Docker and the community have built for the Docker Project \cite{moby}. This project includes containerd, a daemon that acts as a higher-level manager or hub for coordinating the activities of containers and content with an emphasis on simplicity, robustness and portability. To start, stop and manage containers, a lower-level program, called runtime, is used. By default, containerd uses runc as its container runtime.
+
+Since 2017, a new technology called WebAssembly has arisen. It is designed as a portable compilation target for programming languages, enabling deployment on the web for client and server applications. Furthermore, in December 2020 the first snapshot of the WebAssembly System Interface (WASI) was released, enabling users to use WebAssembly beyond the web.
+Effectively contending with Docker, substantiated by a now famous tweet from Solomon Hykes stating that were WASM and WASI available in 2008 there wouldn't be any necessity of creating Docker.
+With the advent of the second preview version came the Component Model, which allows for a more modular approach for creating WebAssembly applications.
+
+One class of applications that has a very high degree of heterogeneity is embedded software. These are applications that are typically specialized for the particular hardware that it runs on and that have time and memory constraints. Additionally, embedded devices often contain multiple components which are controlled by a processor. Communication between them can be done through direct memory addressing or via protocols like I2C, SPI or USB.
+
+The goal of this dissertation is to further build upon the foundations laid by Emiel van Severenin's dissertation, but solely focusing on I2C. Moreover, insights into the current evolutions in the Component Model, WASI and the embedded scene in this context are provided.
+
+[Hier komt dan nog alinea met wat er in ieder hoofdstuk besproken wordt enzo]
+
