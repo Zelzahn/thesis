@@ -1,4 +1,4 @@
-\chapter{Interfacing hardware}
+\section{Interfacing hardware}
 \label{chap:hardware}
 % [Deze sectie draait rond HAL, wat het is, waarom het nodig is en waarom het nuttig is om een gelijkaardige API te voorzien. Ter inspiratie kan de \verb|embedded_hal| scope en design goals genomen worden.]
 
@@ -8,7 +8,7 @@ For Rust, this \gls{HAL} is, aptly, named \href{https://github.com/rust-embedded
 
 Sadly, the notion of a community-wide shared interface is not universally present in all embedded communities. The C/C++ community is such an example, where there isn't one \gls{HAL} to rule them all.
 
-\section{Different versions of \texttt{embedded-hal}}
+\subsection{Different versions of \texttt{embedded-hal}}
 
 Unfortunately, there are two major versions of \texttt{embedded-hal}, i.e. $0.2.7$ and $1.0$, which are incompatible with one another. 
 As version 1.0 was only released on the ninth of January 2024, it is still fairly novel. Thus, crates have a wildly varying degree of compliance with this version. 
@@ -18,11 +18,11 @@ Secondly, async versions of the blocking traits are now available in the \texttt
 
 There is \href{https://github.com/ryankurte/embedded-hal-compat}{a crate} that tries to provide a compatibility layer between these two versions, but the latest supported version is merely a release candidate of $1.0$. Thus, the crate is not really practically useful.
 
-\section{Peripheral Access Crates}
+\subsection{Peripheral Access Crates}
 
 \gls{SVD} files are \texttt{XML} files typically provided by silicon vendors which descibe the memory map of a device. Via \href{https://crates.io/crates/svd2rust}{the \texttt{svd2rust} crate} it is possible to generate a mostly-safe Rust wrapper. Further discussion is out of scope as this is a very thin wrapper, and usually depended upon by \gls{HAL} authors.
 
-\section{Running the solution}
+\subsection{Running the solution}
 \label{sec:running}
 
 When the target platform is an \gls{OS}, it is typically fairly easy to build and execute a software solution, plainly by doing this on the target device itself, or by cross-compilation from a morepotent device. This is not the case for an \gls{MCU}, here, only cross-compilation is possible. Due to the constrained nature of memory on an \gls{MCU}, the memory-layout also needs to be specified.

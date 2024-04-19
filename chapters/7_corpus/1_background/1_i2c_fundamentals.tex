@@ -1,4 +1,4 @@
-\chapter{I2C fundamentals}
+\section{I2C fundamentals}
 \label{chap:i2c}
 
 As we will be leveraging the \gls{I2C} protocol, it is worth looking into the inner workings. 
@@ -10,7 +10,7 @@ This communication bus has no minimum frequency, but can go as fast as 5 Mbit/s.
 Besides a 0 or 1 data bit, there are two special START and STOP signals which act as message delimiters.
 
 % [in principe kan er nog verteld worden over de verschillende snelheden en dergelijke, maar aangezien ik daar niet mee te maken heb gehad ben ik van mening dat dat hier out of scope is]
-\section{Operations}
+\subsection{Operations}
 
 A node on the bus can have one of two roles\footnote{In earlier literature, the terminology master and slave were used for respectively controller and target.}:
 \begin{itemize}
@@ -30,13 +30,13 @@ Initial communication is established by a controller that sends a START followed
 
 Further communication is performed by one party sending data, most significant bit first, and the other sending an \gls{ACK} bit.
 
-\subsection{Bus sharing}
+\subsubsection{Bus sharing}
 
 In the case of multiple targets linked with one controller, the controller needs to indicate which target it wants to interact with. To achieve this, each target compares the address sent by the controller with its own. If the address matches, it sends a low voltage \gls{ACK} bit back to the controller. If the address doesn't match, the target does nothing and the \gls{SDA} line remains high.
 
 When there are multiple controllers, issues can arise, precisely when they try to send or receive data at the same time over the \gls{SDA} line. To solve this problem, each controller needs to detect if the \gls{SDA} line is low or high before transmitting a message. If the \gls{SDA} line is low, another controller is in control of the bus, and it should wait until a STOP has been received to send the message. If the \gls{SDA} line is high, then it's safe to transmit the message.
 
-\subsection{Methods}
+\subsubsection{Methods}
 
 The protocol defines three basic types:
 \begin{itemize}
@@ -48,7 +48,7 @@ The protocol defines three basic types:
 It is also possible to combine a list of write and read operations inside a transaction contract.
 Figure \ref{fig:read_example} showcases more in detail how a read operation works.
 
-\section{SMBus}
+\subsection{SMBus}
 % [het idee is dat er hier uitgelegd gaat worden van wat SMBus is en de relatie met I2C]
 
 The \gls{SMBus}~\cite{smbus} is a subset derived from \gls{I2C} by Intel. Its main application is to monitor critical parameters on PC motherboards and in embedded systems. On the surface they are quite similar, but there are some subtle differences worth mentioning. For one, \gls{SMBus} will time out when \gls{SCL} is held low for more than 35 milliseconds. \gls{I2C} doesn't have an established timeout value, implicating that a target or controller can hold \gls{SCL} as long as necessary to process data. \\

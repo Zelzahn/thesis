@@ -10,13 +10,10 @@ A level-1 auxiliary file: chapters/4_extended_abstract/english.aux
 A level-1 auxiliary file: chapters/4_extended_abstract/dutch.aux
 A level-1 auxiliary file: chapters/5_list_of_acronyms.aux
 A level-1 auxiliary file: chapters/6_introduction.aux
-A level-1 auxiliary file: chapters/7_corpus/1_i2c_fundamentals.aux
-A level-1 auxiliary file: chapters/7_corpus/2_interfacing_hardware.aux
-A level-1 auxiliary file: chapters/7_corpus/3_webassembly.aux
-A level-1 auxiliary file: chapters/7_corpus/4_component_model.aux
-A level-1 auxiliary file: chapters/7_corpus/5_architecture_and_standard.aux
-A level-1 auxiliary file: chapters/7_corpus/6_implementations.aux
-A level-1 auxiliary file: chapters/7_corpus/7_evaluation.aux
+A level-1 auxiliary file: chapters/7_corpus/1_background.aux
+A level-1 auxiliary file: chapters/7_corpus/2_architecture_and_standard.aux
+A level-1 auxiliary file: chapters/7_corpus/3_implementations.aux
+A level-1 auxiliary file: chapters/7_corpus/4_evaluation.aux
 A level-1 auxiliary file: chapters/8_conclusion.aux
 A level-1 auxiliary file: chapters/9_bibliography.aux
 A level-1 auxiliary file: chapters/10_appendices.aux
@@ -37,7 +34,7 @@ Warning--entry type for "wasi" isn't style-file defined
 Done.
 You've used 5 entries,
             4087 wiz_defined-function locations,
-            865 strings with 8883 characters,
+            862 strings with 8759 characters,
 and the built_in function-call counts, 2781 in all, are:
 = -- 172
 > -- 127

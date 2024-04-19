@@ -1,4 +1,4 @@
-\chapter{The Component Model}
+\section{The Component Model}
 \label{chap:component_model}
 
 % [Wat is het component model en waarom willen we het. Ook vertellen dat je het kan zien als een guest/host-architectuur, maar dat het perfect mogelijk is om meerdere componenten samen te weven.]
@@ -10,7 +10,7 @@ It is important to note, though, that the Component Model is not \gls{WASI} (\te
 
 It is easiest to think of the Component Model as a guest-host architecture, but it is certainly possible to compose multiple components together. For this, \href{https://github.com/bytecodealliance/cargo-component}{cargo-component} can be used in Rust, or the language-agnostic \href{https://github.com/bytecodealliance/wasm-tools}{wasm-tools}.
 
-\section{WIT}
+\subsection{WIT}
 \label{sec:wit}
 % [Schetsen wat WIT is en kort hoe de syntax in elkaar zit. Misschien dat het ook handig kan zijn om uit te leggen hoe dependencies in WIT gemanaged worden.]
 
@@ -25,11 +25,11 @@ Furthermore, functions can only be declared as part of an interface, or as an im
 
 To make managing dependencies inside your \gls{WIT} definition easier, the \href{https://github.com/bytecodealliance/wit-deps}{wit-deps} project can be used. It makes it possible to lock your dependencies to a certain version and to check if they're the most recent one.
 
-\subsection{\texttt{witx}}
+\subsubsection{\texttt{witx}}
 
 In older tooling, it is possible to come across \texttt{witx} instead of \gls{WIT}. This was the \gls{IDL} used during \texttt{Preview 1}. It was derived from \texttt{wat}, see chapter~\ref{chap:wasm}, and had a low-level C-like type system that emphasized raw pointers, and callees were expected to have access to the entir lineair memory of the caller.
  
-\section{Guest}
+\subsection{Guest}
 \label{sec:guest}
 % [Op welke manieren kan je allemaal code schrijven dat dan naar een preview 2 component gecompileerd kan worden. Verschillende tooling over programmeertalen heen de specifieke voor Rust. Alsook hoe we van preview1 component naar preview2 kunnen gaan.]
 
@@ -37,7 +37,7 @@ In Rust, \texttt{cargo-component} can be used to compile code to a preview 2 com
 
 Under the hood, \texttt{cargo-component} relies upon \href{https://github.com/bytecodealliance/wit-bindgen}{wit-bindgen} for binding with the interface. Besides Rust, \texttt{wit-bindgen} also supports the following languages: C, Java, Go and C\#. For JavaScript, \href{https://github.com/bytecodealliance/ComponentizeJS}{ComponentizeJS} can be used.
 
-\subsection{Adapter modules}
+\subsubsection{Adapter modules}
 
 The Wasmtime runtime publishes adapter modules with each release, they provide the bridge between the \texttt{Preview 1} \gls{ABI} and the \texttt{Preview 2} \gls{ABI}. The following three modules are provided:
 
@@ -49,7 +49,7 @@ The Wasmtime runtime publishes adapter modules with each release, they provide t
 
 The \texttt{wasmtime serve} subcommand runs a component inside the \texttt{wasi:http/proxy} world, supporting the sending and receiving of HTTP requests.
 
-\section{Host}
+\subsection{Host}
 \label{sec:host}
 % [Uitlegen dat je runtimes hebt en dat je rechtstreeks daarop kan draaien of dat er ook visence, compiling to preview 2 means compiling to \gls{Wasm} and then converting it to a component via an adapater.
 
@@ -58,7 +58,7 @@ The job of the host is to load a component and execute it through the usage of a
 It is also possible to execute a component via the \texttt{wasmtime run} subcommand. This will compile the module to native code, instantiate it and optionally execute an export.
 
 
-\section{Problems}
+\subsection{Problems}
 % [hier iets vertellen over dat het gebruik maken van het component model wel wat nadelen inhoudt, zoals extra geheugen dat nodig is enzo, waardoor het niet altijd gewenst is voor dit te gebruiken. Of toch zeker momenteel op hele zwakke MCU's]
 
 [Hier kan er misschien iets verteld worden over de argumenten om component model niet te gebruiken? Is dit wel nuttig en willen we dat wel?]

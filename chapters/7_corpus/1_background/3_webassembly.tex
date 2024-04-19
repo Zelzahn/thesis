@@ -1,4 +1,4 @@
-\chapter{WebAssembly}
+\section{WebAssembly}
 \label{chap:wasm}
 % [Algemene uitleg van wat WebAssembly is en waarom we het buiten het web willen kunnen gebruiken. Hiervoor wordt er dan verwezen naar de lagere memory footprint ten opzichte van docker. Alsook moet er verteld worden wat de previews zijn en de timeline van wanneer ze gereleased zijn. Spinup time is ook een zeer belangrijke om te vermelden.]
 
@@ -6,7 +6,7 @@
 
 Although the name implies it, \gls{Wasm} is not merely limited to the web. There are runtimes that enable execution on a myriad of platforms, ranging from Linux devices to smartphones or even microcontrollers. All possible through the usage of a system interface, called \gls{WASI}.
 
-\section{WebAssembly System Interface}
+\subsection{WebAssembly System Interface}
 \label{sec:wasi}
 
 \gls{WASI}~\cite{wasi} is a modular collection of \gls{API}'s defined with the \gls{WIT} IDL, see section~\ref{sec:wit}, that provide a secure and portable way to access several operating-system-like features such as filesystems, networking, clocks and random numbers. This collection is developed under the governance of the \gls{WASI} Subgroup, a subgroup of the WebAssembly Community Group.
@@ -24,7 +24,7 @@ In this subgroup, the following design principles are core:
 
 % [Hier vergelijking met docker doen.]
 
-\subsection{Versions}
+\subsubsection{Versions}
 \label{sec:versions}
 
 Originally \gls{WASI} launched under the name: \texttt{WebAssembly System Interface, snapshot 1}, nowadays called \texttt{0.1} or \texttt{Preview 1}. On the twenty-fifth of January 2024, \texttt{Preview 2} was launched. Following up will be a \texttt{Preview 3}, and then the \texttt{1.0} release.
@@ -38,12 +38,12 @@ The flagship feature that \texttt{0.2} brought to the table is the component mod
 
 The major banner of the upcoming \texttt{0.3} is asynchronous support. The exact details of what this asynchrony entails is yet to be determined.
 
-\section{Community}
+\subsection{Community}
 \label{sec:community}
 
 As mentioned in section~\ref{sec:wasi}, standardization is performed under the supervision of the \gls{WASI} Subgroup. As a part of W3C's WebAssembly Community Group, it is the key player in the standardization process. With respect to the implementations, this is the \href{https://bytecodealliance.org/}{Bytecode Alliance}, a nonprofit organization of companies. Not every company wishes to part of these bodies, e.g. \href{https://wasmer.io/}{Wasmer}, [zijn er nog goede voorbeelden?].
 
-\section{Runtimes}
+\subsection{Runtimes}
 \label{sec:runtimes}
 % [Wasmtime uitvoerig bespreken, maar ook de meest belangrijke andere runtimes. Het is niet de bedoeling om echt in depth te gaan vergelijken en te benchmarken, maar om gewoon wat te schetsen wat er allemaal is. Daarnaast ook vertellen in welke mate, en hoe, je een preview2 component op een runtime kan laten draaien dat geen support heeft voor het component model. Misschien ook kort iets rond changes die in Wasmtime kunnen gebeuren om meer embedded devices te supporten.]
 

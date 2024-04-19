@@ -6,39 +6,40 @@
 \contentsline {chapter}{List of Acronyms}{x}{section*.7}%
 \contentsline {chapter}{List of Code Fragments}{xii}{section*.9}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
-\contentsline {chapter}{\numberline {2}I2C fundamentals}{2}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Operations}{2}{section*.10}%
-\contentsline {subsection}{\numberline {2.1.1}Bus sharing}{3}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Methods}{3}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}SMBus}{4}{section*.12}%
-\contentsline {chapter}{\numberline {3}Interfacing hardware}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Different versions of \texttt {embedded-hal}}{5}{section*.13}%
-\contentsline {section}{\numberline {3.2}Peripheral Access Crates}{6}{section*.14}%
-\contentsline {section}{\numberline {3.3}Running the solution}{6}{section*.15}%
-\contentsline {chapter}{\numberline {4}WebAssembly}{7}{chapter.4}%
-\contentsline {section}{\numberline {4.1}WebAssembly System Interface}{7}{section*.16}%
-\contentsline {subsection}{\numberline {4.1.1}Versions}{8}{subsection.4.1.1}%
-\contentsline {section}{\numberline {4.2}Community}{8}{section*.17}%
-\contentsline {section}{\numberline {4.3}Runtimes}{8}{section*.18}%
-\contentsline {chapter}{\numberline {5}The Component Model}{10}{chapter.5}%
-\contentsline {section}{\numberline {5.1}WIT}{10}{section*.19}%
-\contentsline {subsection}{\numberline {5.1.1}\texttt {witx}}{11}{subsection.5.1.1}%
-\contentsline {section}{\numberline {5.2}Guest}{11}{section*.20}%
-\contentsline {subsection}{\numberline {5.2.1}Adapter modules}{11}{subsection.5.2.1}%
-\contentsline {section}{\numberline {5.3}Host}{12}{section*.21}%
-\contentsline {section}{\numberline {5.4}Problems}{12}{section*.22}%
-\contentsline {chapter}{\numberline {6}Architecture and standard}{13}{chapter.6}%
-\contentsline {section}{\numberline {6.1}The proposal process}{13}{section*.23}%
-\contentsline {subsection}{\numberline {6.1.1}Current \texttt {wasi:i2c} phase}{14}{subsection.6.1.1}%
-\contentsline {section}{\numberline {6.2}Alternatives to Wasm}{14}{section*.24}%
-\contentsline {chapter}{\numberline {7}Implementations}{15}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Embedded driver development in Rust}{16}{section*.26}%
-\contentsline {section}{\numberline {7.2}Embedded driver development in WebAssembly}{16}{section*.27}%
-\contentsline {subsection}{\numberline {7.2.1}Wasmtime}{16}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}WAMR}{16}{subsection.7.2.2}%
-\contentsline {chapter}{\numberline {8}Evaluation}{19}{chapter.8}%
-\contentsline {chapter}{Conclusie}{20}{chapter*.29}%
-\contentsline {chapter}{References}{21}{chapter*.30}%
-\contentsline {chapter}{Appendices}{22}{section*.31}%
-\contentsline {section}{Bijlage A}{23}{section*.32}%
-\contentsline {section}{Bijlage B}{24}{section*.33}%
+\contentsline {chapter}{\numberline {2}Background}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}I2C fundamentals}{2}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Operations}{2}{subsection.2.1.1}%
+\contentsline {subsubsection}{Bus sharing}{3}{subsubsection*.11}%
+\contentsline {subsubsection}{Methods}{3}{subsubsection*.12}%
+\contentsline {subsection}{\numberline {2.1.2}SMBus}{4}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Interfacing hardware}{4}{section*.13}%
+\contentsline {subsection}{\numberline {2.2.1}Different versions of \texttt {embedded-hal}}{5}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Peripheral Access Crates}{5}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Running the solution}{5}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}WebAssembly}{6}{section*.14}%
+\contentsline {subsection}{\numberline {2.3.1}WebAssembly System Interface}{6}{subsection.2.3.1}%
+\contentsline {subsubsection}{Versions}{7}{subsubsection*.15}%
+\contentsline {subsection}{\numberline {2.3.2}Community}{7}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Runtimes}{7}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}The Component Model}{8}{section*.16}%
+\contentsline {subsection}{\numberline {2.4.1}WIT}{8}{subsection.2.4.1}%
+\contentsline {subsubsection}{\texttt {witx}}{9}{subsubsection*.17}%
+\contentsline {subsection}{\numberline {2.4.2}Guest}{9}{subsection.2.4.2}%
+\contentsline {subsubsection}{Adapter modules}{9}{subsubsection*.18}%
+\contentsline {subsection}{\numberline {2.4.3}Host}{10}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Problems}{10}{subsection.2.4.4}%
+\contentsline {chapter}{\numberline {3}Architecture and standard}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}The proposal process}{11}{section*.19}%
+\contentsline {subsection}{\numberline {3.1.1}Current \texttt {wasi:i2c} phase}{12}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Alternatives to Wasm}{12}{section*.20}%
+\contentsline {chapter}{\numberline {4}Implementations}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Embedded driver development in Rust}{14}{section*.22}%
+\contentsline {section}{\numberline {4.2}Embedded driver development in WebAssembly}{14}{section*.23}%
+\contentsline {subsection}{\numberline {4.2.1}Wasmtime}{14}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}WAMR}{14}{subsection.4.2.2}%
+\contentsline {chapter}{\numberline {5}Evaluation}{17}{chapter.5}%
+\contentsline {chapter}{Conclusie}{18}{chapter*.25}%
+\contentsline {chapter}{References}{19}{chapter*.26}%
+\contentsline {chapter}{Appendices}{20}{section*.27}%
+\contentsline {section}{Bijlage A}{21}{section*.28}%
+\contentsline {section}{Bijlage B}{22}{section*.29}%
