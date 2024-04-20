@@ -29,6 +29,9 @@
 \bibitem{hal:1}
 E.~R.~W. Group, ``embedded-hal v1.0 now released!'' \url{https://blog.rust-embedded.org/embedded-hal-v1/}, 2024.
 
+\bibitem{deno:wasi}
+A.~Jiang, B.~Iwańczuk, D.~Sherret, K.~Whinnery, L.~Kettmeir, M.~Mastracci, N.~Rahman, Y.~Hinosawa, and M.~Hagemeister, ``Deno 1.38: Html doc generator and hmr,'' \url{https://deno.com/blog/v1.38#deprecation-of-stdwasi}, 2023.
+
 \bibitem{wasi}
 \BIBentryALTinterwordspacing
 P.~Hickey, J.~Konka, D.~Gohman, S.~Clegg, A.~Brown, A.~Crichton, L.~Clark, C.~Ihrig, P.~Huene, Y.~Yuji, D.~Vasilik, J.~Triplett, S.~Rubanov, S.~Akbary, M.~Frysinger, A.~Turner, A.~Zakai, A.~Mackenzie, B.~Brittain, C.~Beyer, D.~McKay, L.~Wang, M.~Mielniczuk, M.~Berger, PTrottier, P.~Sikora, T.~Schneidereit, katelyn martin, and nasso, ``Webassembly/wasi: snapshot-01,'' Dec. 2020. [Online]. Available: \url{https://doi.org/10.5281/zenodo.4323447}

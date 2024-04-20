@@ -81,3 +81,6 @@ As explained in section~\ref{sec:runtimes}, \gls{WAMR} is a lightweight runtime 
 
 As we can no longer use \gls{WIT}, nor pass a connection to the guest, we are enforced to greatly differ from the Wasmtime implementation. Therefore, we will focus us on the simpler 4-digit 7-segment display with the following conceptuel differences for \gls{WAMR}: The \gls{I2C} connection is kept global inside the host and there are now 4 arguments for the \texttt{write} function, one for each digit.
 
+\subsection{Problems}
+%TODO: Vertellen over gemerkte tekortkomingen aan WAMR, component model enzo
+% Bvb. Is het mogelijk om Component Model voor MCU's te gebruiken

@@ -1,0 +1,42 @@
+\section{The Component Model}
+\label{chap:component_model}
+
+% [Wat is het component model en waarom willen we het. Ook vertellen dat je het kan zien als een guest/host-architectuur, maar dat het perfect mogelijk is om meerdere componenten samen te weven.]
+
+The WebAssembly Component Model is an architecture for building interoperable \gls{Wasm} liraries, applications and environments. These components can be seen as containers for modules, or other components, which express their interfaces and dependencies via \gls{WIT} and the canonical \gls{ABI}. 
+An \gls{ABI} can be seen as an agreement on how to pass around data in a binary format, specifically concerned with the data layout at the bits-and-bytes level. The Canonical \gls{ABI} defined by the component model, specifies how the \gls{WIT} type definitions are translated to bits and bytes. Internally, a C and a Rust component might represent strings in a quite different way, but the canonical \gls{ABI} provides a format for them to pass strings across the boundary between them.
+
+In regard to \gls{WASI}, the component model is the staple feature of its second preview, but it is possible to make use of the \gls{WASI} interfaces without the component model, and thus this model is entirely optional. By way of comparison to a traditional \gls{OS}, the Component Model fills the role of an \gls{OS}'s process model, defining how processes start up and communicate with each other, while \gls{WASI} fills the role of an \gls{OS}'s many I/O interfaces.
+
+To compose multiple components together \href{https://github.com/bytecodealliance/wasm-tools}{wasm-tools} can be used, or visually using the \href{https://wasmbuilder.app/}{builder} app. Specifically for Rust, \href{https://github.com/bytecodealliance/cargo-component}{cargo-component} is also an option.
+ 
+\subsection{Toolchain}
+\label{sec:guest}
+% [Op welke manieren kan je allemaal code schrijven dat dan naar een preview 2 component gecompileerd kan worden. Verschillende tooling over programmeertalen heen de specifieke voor Rust. Alsook hoe we van preview1 component naar preview2 kunnen gaan.]
+
+In Rust, \texttt{cargo-component} can be used to compile code to a preview 2 component. In essence, compiling to \texttt{Preview 2} means compiling to \texttt{wasm32-wasi} and then converting it to a component via an adapater and the \texttt{wasm-tools component new} subcommand. This component then adheres to the \gls{WIT} interface specified in the configuration file. The adaption is needed because there's no first-class support for \texttt{Preview 2} yet. Mainstream support for this is planned for early 2025~\cite{rust:p2}.
+
+Under the hood, \texttt{cargo-component} relies upon \href{https://github.com/bytecodealliance/wit-bindgen}{wit-bindgen} for binding with the interface. Besides Rust, \texttt{wit-bindgen} also supports the following languages: C, Java, Go and C\#. For JavaScript, \href{https://github.com/bytecodealliance/ComponentizeJS}{ComponentizeJS} can be used.
+
+\subsubsection{Adapter modules}
+
+The Wasmtime runtime publishes adapter modules with each release, they provide the bridge between the \texttt{Preview 1} \gls{ABI} and the \texttt{Preview 2} \gls{ABI}. The following three modules are provided:
+
+\begin{itemize}
+    \item Command: For command-line applications
+    \item Reactor: Applications that don't have a \texttt{main} function
+    \item Proxy: For applications fed into \texttt{wasmtime serve}
+\end{itemize}
+
+The \texttt{wasmtime serve} subcommand runs a component inside the \texttt{wasi:http/proxy} world, supporting the sending and receiving of HTTP requests.
+
+\subsection{Running components}
+\label{sec:host}
+% [Uitlegen dat je runtimes hebt en dat je rechtstreeks daarop kan draaien of dat er ook visence, compiling to preview 2 means compiling to \gls{Wasm} and then converting it to a component via an adapater.
+
+Running a component is done by calling one of its exports. This can require a custom host, otherwise the \texttt{wasmtime} command line can be used.
+
+The job of a custom host is to load a component and execute it through the usage of a \gls{Wasm} runtime. See section~\ref{sec:runtimes} for a shortlist of the available ones. To guarantee a correct execution, it is important to make sure that any missing interface imports are filled in here, see the earlier section~\ref{sec:wit}. When using \texttt{wit-bindgen}, this is done via the \texttt{with} option inside the \href{https://docs.rs/wasmtime/latest/wasmtime/component/macro.bindgen.html}{the \texttt{bindgen} macro}.
+
+When the component exports the \path{wasi:cli/run} interface, and imports only interfaces listed in the \path{wasi:cli/command} world, it is considered a command component. Command components can be executed by the \texttt{wasmtime run} subcommand. This will compile the module to native code, instantiate it and optionally execute an export.
+
