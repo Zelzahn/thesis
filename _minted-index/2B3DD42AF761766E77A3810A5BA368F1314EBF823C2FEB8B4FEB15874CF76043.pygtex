@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{package}\PYG{+w}{ }\PYG{n}{wasi}:\PYG{n+nc}{i2c}\PYG{o}{@}\PYG{l+m+mf}{0.2.0}\PYG{o}{\PYGZhy{}}\PYG{n}{draft}\PYG{p}{;}
+
+\PYG{n}{world}\PYG{+w}{ }\PYG{n}{imports}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{import}\PYG{+w}{ }\PYG{n}{i2c}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{import}\PYG{+w}{ }\PYG{n}{delay}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

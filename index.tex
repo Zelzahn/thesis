@@ -11,7 +11,7 @@
 
 \usepackage[hyphens]{url} % Break line on hyphens in long urls
 \usepackage{graphicx}
-\graphicspath{{images/}}
+\graphicspath{{figures/}}
 \usepackage{pdfpages}
 \usepackage{enumitem}
 \usepackage{float}
@@ -29,6 +29,8 @@
 \setlength{\cfttabindent}{0pt}    % remove indentation from tables in List of Tables
 
 \usepackage{parskip} % Add space between two paragraphs and don't indent the first line of the paragraph
+
+\usepackage{dirtree}
 
 % To generate fake lorem ipsum text
 % \usepackage{lipsum}
@@ -83,6 +85,8 @@
 
 % We use the package `minted` for modern code highlighting.
 \usepackage[newfloat,chapter]{minted}
+% Reduce text size of all codefragments
+\setminted{fontsize=\footnotesize}
 % \SetupFloatingEnvironment{listing}{name=Codefragment, listname=Lijst van codefragmenten}
 \SetupFloatingEnvironment{listing}{name=Codefragment, listname=List of Code Fragments} % lang:english
 
@@ -134,6 +138,9 @@
 \usepackage[toc,acronym]{glossaries}  % for list of acronyms
 \makeglossaries                       % start internal list of acronyms
 
+
+% Allows showing certain pages in landscape mode
+\usepackage{rotating}
 
 %
 % Set the title and your name

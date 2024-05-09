@@ -3,45 +3,75 @@
 % [Vertellen over de proposal, hoe championship werkt, wat de huidige status is en wat er moet gedaan worden om het te advancen. Daarnaast ook de laatste status rond SIG Embedded vertellen en de missie ervan.]
 
 % 1. Primer om te vertellen wat nodig is om dan de rest te snappen
-As stated previously in section~\ref{sec:wasi}, \gls{WASI} is a collection of \gls{API}'s. In order for \gls{I2C} support inside \gls{WASI}, an \gls{API} should thus be defined and standardized. The \gls{API} is publicly available inside the \href{https://github.com/WebAssembly/wasi-i2c}{wasi-i2c} repository.
 
-Software developed without any reviews, nor feedback, is software that is doomed to fail at some point. The same principle applies to the standardization of a proposal. For feedback, the input from the \gls{Wasm} community, see section~\ref{sec:community}, is invaluable. Besides this community, there's also a subcommunity of people interested in the combination of \gls{Wasm} and embedded devices. To ratify this subcommunity, a request for a \gls{SIG} Embedded has been opened with the Bytecode Alliance.
+Currently, the \gls{I2C} proposal~\cite{gh:i2c} is in the first phase, with ongoing effort to fullfill the criteria to pass the vote to the second phase. Specifically, the following requirements are yet to be met:
 
-\section{The proposal process}
+\begin{itemize}
+    \item A broad enough of a consensus needs to be reached on the capability criteria
+    \item Some pull requests and issues are still open that iterate on the design of the feature
+\end{itemize}
 
-Stated in section~\ref{sec:wasi}, \gls{WASI} is under the goverance of the \gls{WASI} Subgroup. This subgroup is further split up into the Community Group and the Working Group. The purpose of the Community Group is to attempt to address all concerns, but no 100\% consensus is needed. The Working Group, on the other hand, is there to finalize and ratify mostly complete specifications plus test suites from the Community Group.
+This effort is led under the guidance of certain champions, for this proposal these are Friedrich Vandenberghe, Merlijn Sebrechts and Maximilian Seidler. Both Friedrich and Merlijn are from UGent, Maximilian is from Siemens. This mix of academians and people from the industry ensures ongoing standardization effort and actual usage of the feature.
 
-% This means that they are responsible for any proposed changes to this collection of interfaces to be thoroughly vetted by the community.
+At the start of this thesis the proposal was merely an idea, but now it contains three \gls{WIT} files that follow the component model: \texttt{delay}, \texttt{i2c} and \texttt{world}. The first two closely follow the corresponding interfaces from \texttt{embedded-hal} version 1, \texttt{embedded-hal} is explained in section~\ref{sec:hardware}, but this crate is not necessary for an implementation. The philosphy behind this is the same as for why one would want to have an \texttt{embedded-hal}.
 
-The process is split up into five stages of standardization:
+% TODO: Dit aanvullen wanneer Merlijn op Dan geantwoord heeft.
+% https://github.com/WebAssembly/wasi-i2c/pull/9
+% In case of ambiguity the I2C standard should be followed.
+
+% TODO: Verwijzen naar Zephyr I2C API
+% https://github.com/WebAssembly/wasi-i2c/issues/6
+
+\begin{listing}[h]
+\begin{minted}[samepage]{rust}
+package wasi:i2c@0.2.0-draft;
+
+world imports {
+    import i2c;
+    import delay;
+}
+\end{minted}
+\caption{The \texttt{world.wit} file inside the \texttt{wasi-i2c} proposal.}
+\label{code:world}
+\end{listing}
+
+The proposal defines two handles, for an explainer on handles see~\ref{sec:design}, one for \gls{I2C} and one for delays. These provide a pretty broad access, e.g. it is not possible to limit the \gls{I2C} connection to certain addresses. A more fine-grained control model is possible, but there's currently no demand for this.
+
+Inside the \texttt{i2c} interface, no explicit constructor is defined because \texttt{i2c} resources can be constructed in many different ways, so worlds that include this interface should also include a way to obtain \gls{I2C} handles. Typically, this is done by either having handles passed into exported functions as parameters, or by having handles returned from imported functions.
+The definition for \texttt{world.wit} can be found in codefragment~\ref{code:world}. The purpose of this world is to provide a way to import all the defined interfaces in the proposal at once.
+
+Although delays are not inherently linked with \gls{I2C}, some guests implementations require this, and thus it is part of the proposal. In the future, it could be that delays get split up into their own proposal, or that this proposal gets merged with the other embedded-related proposals. The biggest drawback to a merger would be that this, possibly, could heavily increase the burden on the champions. Furthermore, this would require that all the champions are interested in maintaining all of these other communication protocols. On the other hand, this would centralize the proposals and could make it easier for potential implementors.
+
+\section{Asynchronous I2C}
+
+Currently, the proposal is purely synchronous. To provide an asynchronous (async) API, there are two possible ways to tackle this:
 
 \begin{description}
-    \item[Phase 0.] Pre-Proposal: The Community Group decides whether the pre-proposal is in scope for \gls{WASI}.
-    \item[Phase 1.] Proposement of the feature: An overview document must be produced that specifies the feature with reasonably precise and complete language.
-    \item[Phase 2.] Specification text is available: A test suite should be added, and it should pass on the prototype or some other implementation.
-    \item[Phase 3.] The specification gets implemented by engines.
-    \item[Phase 4.] The feature is being standardized: Ownership gets transferred from the Community Group to the Working Group, and two or more Web \gls{VM}'s have implemented the feature.
-    \item[Phase 5.] The feature is standardized: Editors perform final editorial tweaks and merge the feature into the main branch of the primary specification repository.
-
+    \item[Explicit] A seperate WIT API could be provided that depends on \texttt{wasi-io}~\cite{gh:io} polling. This could be implemented with the current tooling.
+    \item[Integrated] We could also wait for the Component Model to natively integrate async. The major upside to this approach is that a single WIT description can describe both a sync and async API. Caller and callee can each independently chose if they want to be sync or async, and they can be linked.
 \end{description}
 
-To go from the one stage to the following, a vote in the subgroup needs to be passed. Except to enter phase 0, here the proposal is still merely an idea.
+As there's no immediate need for this, the champions have decided that it is best to wait until the integrated option is mainstream.
 
-It is the convention that a proposal has the \texttt{wasi-} prefix. This is the reason the \gls{I2C} proposal is called \texttt{wasi-i2c}.
+\section{Portability criteria}
 
-\subsection{Community}
-\label{sec:community}
+An important part of a proposal is its portability criteria, with these the champions show that their specification isn't overspecified for a specific platform. Commonly, these are two complete independent implementations, but due to the diversity in platforms that can interact with I2C this isn't suitable for the \texttt{wasi-i2c} proposal. 
 
-% TODO: Explicieter zetten dat het (op papier) 2 aparte dingen zijn
-As mentioned in section~\ref{sec:wasi}, standardization is performed under the supervision of the \gls{WASI} Subgroup. As a part of W3C's WebAssembly Community Group, it is the key player in the standardization process. With respect to the implementations, this is the \href{https://bytecodealliance.org/}{Bytecode Alliance}, a nonprofit organization of companies.
+\begin{table}[h]
+	\centering
+	\captionsetup{justification=centering}
+	\begin{tabular}{c c l}
+		\toprule
+		Platform & Architecture & Reference hardware \\ \midrule
+        Linux    & ARM64 & Raspberry Pi 3 Model B \\
+        RTOS    & RISC-V & ESP32-C2 \\
+        RTOS      & ARM32 & Nucleo F412ZG \\
+		\bottomrule
+	\end{tabular}
+    \caption{\texttt{wasi-i2c} portability criteria}
+	\label{tab:criteria}
+\end{table}
 
-\subsection{Current \texttt{wasi:i2c} phase}
+The champions, together with people from Siemens, Intel, Aptiv, Xiaomi, Amazon, Midokura, Sony, Atym and Bosch, have agreed upon a set of criteria for the proposal. These criteria can be found in table~\ref{tab:criteria}. For each criterium, reference hardware is provided, without these there would still be a lot of possible variety in RAM size, flash size and CPU speed. Herein Intel x86 is missing, but support for this is implied as this is the used architecture for developing Wasmtime. The Nucleo is chosen because this is the reference board for Siemens. The other two are chosen to showcase support for both RTOS and Linux, and ARM and RISC-V.
+As an extra requirement besides the targets, it is important that the interface is designed in such a way that memory usage is limited to the bare needed minimum. To ensure enough RAM left for the application itself.
 
-Currently, the \gls{I2C} proposal is in the first phase, with ongoing effort to fullfill the criteria to pass the vote to the second phase. Specifically, a broad enough of a consensus needs to be reached on the capability criteria. This effort is led under the guidance of certain champions. For \texttt{wasi:i2c} these are Friedrich Vandenberghe, Merlijn Sebrechts and Maximilian Seidler. Both Friedrich and Merlijn are from UGent, Maximilian is from Siemens. This mix of academians and people from the industry ensures ongoing standardization effort and actual usage of the feature.
-
-\section{Alternatives to Wasm}
-
-% 2. Bredere exploratie voor alternatieve oplossingen
-% 	1. Hoe I2C aangesproken wordt vanuit nodejs (antwoord: ze geven linux handle) en via linux
-% 	2. WebUSB: Dit is via js dus barf
-% 	3. Hier kan er hard gegaan worden op linken met academische artikels

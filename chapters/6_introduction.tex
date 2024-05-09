@@ -1,26 +1,31 @@
 \chapter{Introduction}
 \label{chap:intro}
 
-[secties zijn tijdelijk, en puur om aan te tonen dat tekst voor "onderzoeksvragen" nog niet klaar genoeg is]
-\section{WIP}
 % Dit kan gezien worden als een omgekeerde driehoek
-
 % 1. Wat is het maatschappelijke probleem?
 % 	1. Voorbeeld: Updaten van auto's
 % 	2. Er mag gelinkt worden met nieuwsartikels
 
-There are countless software solutions running on critical hardware, where sudden failure could result in the loss of people's live, e.g. programs guiding surgeons during operations or cars. Furthermore, in the case of cars, there's a clear trend towards more advanced infotainment systems and to update these remotely without the need to visit an auto mechanic. When such an update fails to perform, it should be possible to rollback unbeknownst to the driver.
+There are countless software solutions running on critical infrastructure, where sudden failure could result in the loss of people's live, e.g. programs guiding surgeons during operations, infotainment systems inside cars or train control systems. Due to a variety of reasons, the longevity of this hardware often spans multiple decades~\cite{ars:trains}. Furthermore, in the automotive industry, there's a clear trend towards more advanced infotainment systems and more software-defined vehicles. Ideally, these applications should be kept up to date regularly with security enhancements or feature improvements. To this end, there's a rapidly growing practice of wirelessly distributing software updates to vechicles, called over-the-air~\cite{aptiv:ota}.
+When such an update fails to perform, it should be possible to roll back this change without impact to the end-user. Thus, security and reliability are of upmost importance in these use-cases. Additionally, these solutions are often tightly integrated with \gls{IoT} devices with limited hardware capabilities. This augments the requirements with the demand for a minimal overhead.
 
-% TODO: Brug naar lange termijn onderhoud
-% 2. Firmware, heel lang onderhouden en zo brugje naar Wasm maken
+% Deze paragraaf is opgesplitst in 2 delen:
+% 1. WASM, WASI en component model _aims_ to fullfill this
+% 2. Maar, dit en dit ontbreekt nog.
+\gls{Wasm}, and \gls{WASI}, is the technology that aims to fullfill all these requirements. Created to execute binary code alongside JavaScript inside the browser, it is now actively used outside this environment via \gls{WASI}. This system interface is a set of APIs that facilitates interaction with the filesystem, HTTP calls, a Command-Line Interface etc. With the advent of its second preview release also came the release of the component model, an architecture for building interoperable \gls{Wasm} libraries, applications, and environments. \\
+But currently, these technologies merely aim to, and thus not satisfy, these requirements. Specifically, there aren't any interfaces yet for the \gls{I2C} protocol. This protocol defines a serial communication bus widely used in the \gls{IoT} ecosystem, like smart cars, health machines etc.
+
+The goal of this dissertation is to facilitate the \gls{I2C} connection between \gls{Wasm} applications and its underlying hardware and sensors, while still adhering to the requirements. Furthermore, this dissertation also tries to standardize this method. Effectively enabling its use in the industry and ensuring sustainability. This leads to the following research questions:
+
+\begin{description}
+    \item[RQ1] How can a WebAssembly component control a device using I2C, while keeping the migration cost of existing applications to Wasm as low as possible?
+    \item[RQ2] How can this method be standardized as part of WASI?
+    \item[RQ3] How can capability-based security be applied to this API?
+    \item[RQ4] What is the overhead of this method?
+    \item[RQ5] How suitable is the \gls{WASI} Component Model for microcontrollers with constrained resources.
+\end{description}
+
+Chapter~\ref{chap:bg} provides a writeup of all the necessary background knowledge. Chapter~\ref{chap:architecture} gives an overview of the standardization effort. Chapter~\ref{chap:implementation} demonstrates implementations that make use of I2C as part of Wasm. Following up, chapter~\ref{chap:evaluation} gives an in-depth review of the overhead. 
+% Component model introduceren, zo dieper gaan op hardware en I2C
 % 	1. Probleem: Wasm heeft geen manier om met hardware te praten
 % 	2. En dan dit probleem uitdiepen: Wasi, I2C
-
-In addition, with the advent of generational AI's like ChatGPT, worldwide GPU usage has exploded. Directly translating in an explosion of energy and water usage to run all and cool all this harware inside data-centres. Sadly, these GPUs have long-lasting periods of idly running, waiting for requests. It should be possible to start a GPU when running a request, but otherwise keep it off, without significant overhead in terms of latency.
-
-% TODO: Hierop is de hele korte startup times en overhead van Wasm ook de oplossing
-
-\section{Onderzoeksvragen}
-% TODO: 3. Onderzoeksvragen en kort overzicht
-% 	1. Hoe kan het secure gebeuren?
-% 	2. Wat is de performance?

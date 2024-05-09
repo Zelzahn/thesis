@@ -1,53 +1,93 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\citation{nxp:i2c}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}Background}{2}{chapter.2}\protected@file@percent }
+\citation{wasm:ps}
+\citation{wasm:ge}
+\citation{gh:emscripten}
+\citation{nodejs}
+\citation{deno}
+\citation{deno:wasi}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}I2C fundamentals}{2}{section.2.1}\protected@file@percent }
-\newlabel{chap:i2c}{{2.1}{2}{I2C fundamentals}{section.2.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Operations}{2}{subsection.2.1.1}\protected@file@percent }
+\newlabel{chap:bg}{{2}{3}{Background}{chapter.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}WebAssembly}{3}{section.2.1}\protected@file@percent }
+\newlabel{chap:wasm}{{2.1}{3}{WebAssembly}{section.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}JavaScript integration}{3}{subsection.2.1.1}\protected@file@percent }
+\citation{wasi}
+\citation{ba:announce}
+\citation{cap-security}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}WebAssembly System Interface}{4}{section*.10}\protected@file@percent }
+\newlabel{sec:wasi}{{2.2}{4}{WebAssembly System Interface}{section*.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Design principles}{4}{subsection.2.2.1}\protected@file@percent }
+\newlabel{sec:design}{{2.2.1}{4}{Design principles}{subsection.2.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}The standardization process}{5}{subsection.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}WIT}{5}{subsection.2.2.3}\protected@file@percent }
+\newlabel{sec:wit}{{2.2.3}{5}{WIT}{subsection.2.2.3}{}}
+\citation{gh:wit_deps}
+\@writefile{toc}{\contentsline {subsubsection}{\texttt  {witx}}{6}{subsubsection*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.4}Versions}{6}{subsection.2.2.4}\protected@file@percent }
+\newlabel{sec:versions}{{2.2.4}{6}{Versions}{subsection.2.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.5}Runtimes}{6}{subsection.2.2.5}\protected@file@percent }
+\newlabel{sec:runtimes}{{2.2.5}{6}{Runtimes}{subsection.2.2.5}{}}
+\citation{wasmtime}
+\citation{gh:wamr}
+\citation{gh:wrsdk}
+\citation{jco}
+\citation{gh:cpy}
+\citation{yt:chicory}
+\citation{mechanoid}
+\citation{wazero}
+\citation{gh:wasman}
+\citation{gh:i2c-bus}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.6}Alternatives}{7}{subsection.2.2.6}\protected@file@percent }
+\citation{chirimen}
+\citation{windows:i2c}
+\citation{linux:i2c}
+\citation{macos:i2c}
+\citation{gh:wt}
+\citation{builder}
+\citation{gh:cc}
+\citation{rust:p2}
+\citation{gh:wit-bindgen}
+\citation{gh:cjs}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}The Component Model}{9}{section*.12}\protected@file@percent }
+\newlabel{chap:component_model}{{2.3}{9}{The Component Model}{section*.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Toolchain}{9}{subsection.2.3.1}\protected@file@percent }
+\newlabel{sec:guest}{{2.3.1}{9}{Toolchain}{subsection.2.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Adapter modules}{9}{subsubsection*.13}\protected@file@percent }
+\citation{crates:bindgen}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Running components}{10}{subsection.2.3.2}\protected@file@percent }
+\newlabel{sec:host}{{2.3.2}{10}{Running components}{subsection.2.3.2}{}}
+\citation{nxp:i2c}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}I2C fundamentals}{11}{section*.14}\protected@file@percent }
+\newlabel{chap:i2c}{{2.4}{11}{I2C fundamentals}{section*.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Operations}{11}{subsection.2.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Bus sharing}{11}{subsubsection*.16}\protected@file@percent }
+\citation{smbus}
 \@writefile{lof}{\setforeignlanguage {english}}
 \@writefile{lot}{\setforeignlanguage {english}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Example sequence of a read operation.}}{3}{figure.caption.12}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Example sequence of a read operation.}}{12}{figure.caption.15}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:read_example}{{2.1}{3}{Example sequence of a read operation}{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Bus sharing}{3}{subsubsection*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Methods}{3}{subsubsection*.14}\protected@file@percent }
-\citation{smbus}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}SMBus}{4}{subsection.2.1.2}\protected@file@percent }
+\newlabel{fig:read_example}{{2.1}{12}{Example sequence of a read operation}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Methods}{12}{subsubsection*.17}\protected@file@percent }
+\newlabel{sec:methods}{{2.4.1}{12}{Methods}{subsubsection*.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}SMBus}{12}{subsection.2.4.2}\protected@file@percent }
+\citation{gh:eh}
+\citation{gh:aer}
 \citation{hal:1}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Interfacing hardware}{5}{section*.15}\protected@file@percent }
-\newlabel{chap:hardware}{{2.2}{5}{Interfacing hardware}{section*.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Different versions of \texttt  {embedded-hal}}{5}{subsection.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Peripheral Access Crates}{5}{subsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}Running the solution}{6}{subsection.2.2.3}\protected@file@percent }
-\newlabel{sec:running}{{2.2.3}{6}{Running the solution}{subsection.2.2.3}{}}
-\citation{deno:wasi}
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}WebAssembly}{7}{section*.16}\protected@file@percent }
-\newlabel{chap:wasm}{{2.3}{7}{WebAssembly}{section*.16}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}JavaScript integration}{7}{subsection.2.3.1}\protected@file@percent }
-\citation{wasi}
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}WebAssembly System Interface}{8}{section*.17}\protected@file@percent }
-\newlabel{sec:wasi}{{2.4}{8}{WebAssembly System Interface}{section*.17}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}WIT}{8}{subsection.2.4.1}\protected@file@percent }
-\newlabel{sec:wit}{{2.4.1}{8}{WIT}{subsection.2.4.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\texttt  {witx}}{9}{subsubsection*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Versions}{9}{subsection.2.4.2}\protected@file@percent }
-\newlabel{sec:versions}{{2.4.2}{9}{Versions}{subsection.2.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Runtimes}{9}{subsection.2.4.3}\protected@file@percent }
-\newlabel{sec:runtimes}{{2.4.3}{9}{Runtimes}{subsection.2.4.3}{}}
-\citation{rust:p2}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}The Component Model}{11}{section*.19}\protected@file@percent }
-\newlabel{chap:component_model}{{2.5}{11}{The Component Model}{section*.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Toolchain}{11}{subsection.2.5.1}\protected@file@percent }
-\newlabel{sec:guest}{{2.5.1}{11}{Toolchain}{subsection.2.5.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Adapter modules}{11}{subsubsection*.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Running components}{12}{subsection.2.5.2}\protected@file@percent }
-\newlabel{sec:host}{{2.5.2}{12}{Running components}{subsection.2.5.2}{}}
+\citation{gh:ehcl}
+\citation{crates:svd2rust}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Interfacing hardware}{14}{section*.18}\protected@file@percent }
+\newlabel{sec:hardware}{{2.5}{14}{Interfacing hardware}{section*.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Different versions of \texttt  {embedded-hal}}{14}{subsection.2.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Peripheral Access Crates}{14}{subsection.2.5.2}\protected@file@percent }
+\citation{probe-rs}
+\citation{dap}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Running the solution}{15}{subsection.2.5.3}\protected@file@percent }
+\newlabel{sec:running}{{2.5.3}{15}{Running the solution}{subsection.2.5.3}{}}
 \@setckpt{chapters/7_corpus/1_background}{
-\setcounter{page}{13}
+\setcounter{page}{16}
 \setcounter{equation}{0}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
@@ -58,7 +98,7 @@
 \setcounter{part}{0}
 \setcounter{chapter}{2}
 \setcounter{section}{5}
-\setcounter{subsection}{2}
+\setcounter{subsection}{3}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
@@ -77,7 +117,7 @@
 \setcounter{lotdepth}{1}
 \setcounter{FancyVerbLine}{0}
 \setcounter{linenumber}{1}
-\setcounter{LN@truepage}{24}
+\setcounter{LN@truepage}{27}
 \setcounter{FancyVerbWriteLine}{0}
 \setcounter{FancyVerbBufferIndex}{0}
 \setcounter{FancyVerbBufferLength}{0}
@@ -98,10 +138,11 @@
 \setcounter{Item}{0}
 \setcounter{Hfootnote}{2}
 \setcounter{Hy@AnnotLevel}{0}
-\setcounter{bookmark@seq@number}{26}
+\setcounter{bookmark@seq@number}{27}
 \setcounter{NAT@ctr}{0}
 \setcounter{parentequation}{0}
 \setcounter{su@anzahl}{0}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
+\setcounter{r@tfl@t}{0}
 }

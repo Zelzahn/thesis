@@ -1,0 +1,15 @@
+\section{WebAssembly}
+\label{chap:wasm}
+% [Algemene uitleg van wat WebAssembly is en waarom we het buiten het web willen kunnen gebruiken. Hiervoor wordt er dan verwezen naar de lagere memory footprint ten opzichte van docker. Alsook moet er verteld worden wat de previews zijn en de timeline van wanneer ze gereleased zijn. Spinup time is ook een zeer belangrijke om te vermelden.]
+
+\gls{Wasm} is a binary instruction format for a stack-based \gls{VM}. It is designed as a portable compilation target for programming languages. Binaries have a \texttt{.wasm} file extension, there's also a textual representation which has a \texttt{.wat} extension. This enables deployment on the web for client and server applications. Examples of web applications using this technology are Adobe Photoshop~\cite{wasm:ps} and Google Earth~\cite{wasm:ge}.
+
+Although the name implies it, \gls{Wasm} is not merely limited to the web. There are runtimes that enable execution on a myriad of platforms, ranging from Linux devices to smartphones or even microcontrollers. Via a system interface that enables direct \gls{OS} communication, called \gls{WASI}.
+
+\subsection{JavaScript integration}
+
+Initially, \gls{Wasm} was designed for near-native code execution speed in the web browser\footnote{To be precise, it's the JavaScript engine inside the browser that added support for WebAssembly.}. Therefore, it was designed to run alongside JavaScript, allowing both to work together. In this early stage, compiling to \gls{Wasm} was supplemented with the generation of the required JavaScript glue code. For this, the emscripten~\cite{gh:emscripten} compiler is used.
+
+Outside the web browser, there are also platforms that provide a JavaScript runtime environment, i.e. Node.js~\cite{nodejs} and Deno~\cite{deno}. They both, too, have \gls{Wasm} support, but no manner of accessing \gls{OS} functionality directly on its own. For this the \gls{WASI} \gls{API} needs to be utilized.
+
+For \texttt{Node.js}, integration with \gls{WASI} is experimental and does not provide the comprehensive security properties provided by dedicated \gls{WASI} runtimes. It is uncertain whether full support will ever be implemented. In \texttt{Deno} official support has been deprecated due to a lack of interest~\cite{deno:wasi}.

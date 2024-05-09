@@ -37,6 +37,7 @@ In the case of multiple targets linked with one controller, the controller needs
 When there are multiple controllers, issues can arise, precisely when they try to send or receive data at the same time over the \gls{SDA} line. To solve this problem, each controller needs to detect if the \gls{SDA} line is low or high before transmitting a message. If the \gls{SDA} line is low, another controller is in control of the bus, and it should wait until a STOP has been received to send the message. If the \gls{SDA} line is high, then it's safe to transmit the message.
 
 \subsubsection{Methods}
+\label{sec:methods}
 
 The protocol defines three basic types:
 \begin{itemize}

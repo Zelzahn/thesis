@@ -1,41 +1,90 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Implementations}{15}{chapter.4}\protected@file@percent }
+\citation{gh:iwc}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Implementations}{19}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\newlabel{chap:implementation}{{4}{15}{Implementations}{chapter.4}{}}
+\newlabel{chap:implementation}{{4}{19}{Implementations}{chapter.4}{}}
 \@writefile{lof}{\setforeignlanguage {english}}
 \@writefile{lot}{\setforeignlanguage {english}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Schematic overview of an implementation.}}{15}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:schematic}{{4.1}{15}{Schematic overview of an implementation}{figure.caption.23}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Embedded driver development in Rust}{16}{section*.24}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Embedded driver development in WebAssembly}{16}{section*.25}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Wasmtime}{16}{subsection.4.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}WAMR}{16}{subsection.4.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Problems}{17}{subsection.4.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Directory structure of the implementations repository.}}{19}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:dirtree}{{4.1}{19}{Directory structure of the implementations repository}{figure.caption.23}{}}
+\newlabel{fig:pi3}{{4.2a}{20}{Pi 3}{figure.caption.24}{}}
+\newlabel{sub@fig:pi3}{{a}{20}{Pi 3}{figure.caption.24}{}}
+\newlabel{fig:pi4}{{4.2b}{20}{Pi 4}{figure.caption.24}{}}
+\newlabel{sub@fig:pi4}{{b}{20}{Pi 4}{figure.caption.24}{}}
+\newlabel{fig:pi_pico}{{4.2c}{20}{Pi Pico}{figure.caption.24}{}}
+\newlabel{sub@fig:pi_pico}{{c}{20}{Pi Pico}{figure.caption.24}{}}
 \@writefile{lof}{\setforeignlanguage {english}}
 \@writefile{lot}{\setforeignlanguage {english}}
-\@writefile{lol}{\contentsline {listing}{\numberline {4.1}{\ignorespaces The \gls {WIT} interface to which guest and host bind.}}{18}{listing.caption.26}\protected@file@percent }
-\newlabel{code:wit}{{4.1}{18}{The \gls {WIT} interface to which guest and host bind}{listing.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Setups of....}}{20}{figure.caption.24}\protected@file@percent }
+\@writefile{lof}{\setforeignlanguage {english}}
+\@writefile{lot}{\setforeignlanguage {english}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Concise overview of the setups}}{20}{table.caption.25}\protected@file@percent }
+\newlabel{tab:setups}{{4.1}{20}{Concise overview of the setups}{table.caption.25}{}}
+\citation{gh:hts221}
+\citation{gh:hts221-fork}
+\citation{gh:leh}
+\citation{gh:rppal}
+\citation{gh:rppico}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Native development in Rust}{21}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Embedded driver development in WebAssembly}{21}{section*.27}\protected@file@percent }
+\@writefile{lof}{\setforeignlanguage {english}}
+\@writefile{lot}{\setforeignlanguage {english}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Schematic overview of an implementation in WebAssembly.}}{21}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:schematic}{{4.3}{21}{Schematic overview of an implementation in WebAssembly}{figure.caption.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Schematic implementation for Wasmtime}{22}{subsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{WIT world}{22}{subsubsection*.29}\protected@file@percent }
+\@writefile{lof}{\setforeignlanguage {english}}
+\@writefile{lot}{\setforeignlanguage {english}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Structure of the \texttt  {wit} subdirectory inside Wasmtime}}{22}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:wit:dirtree}{{4.4}{22}{Structure of the \texttt {wit} subdirectory inside Wasmtime}{figure.caption.30}{}}
+\@writefile{lof}{\setforeignlanguage {english}}
+\@writefile{lot}{\setforeignlanguage {english}}
+\@writefile{lol}{\contentsline {listing}{\numberline {4.1}{\ignorespaces The \gls {WIT} worlds to which guest and host bind.}}{22}{listing.caption.31}\protected@file@percent }
+\newlabel{code:wit}{{4.1}{22}{The \gls {WIT} worlds to which guest and host bind}{listing.caption.31}{}}
+\citation{gh:weh}
+\@writefile{toc}{\contentsline {subsubsection}{Guest code}{23}{subsubsection*.32}\protected@file@percent }
+\@writefile{lof}{\setforeignlanguage {english}}
+\@writefile{lot}{\setforeignlanguage {english}}
+\@writefile{lol}{\contentsline {listing}{\numberline {4.2}{\ignorespaces Stripped down version of a guest component for Wasmtime.}}{23}{listing.caption.33}\protected@file@percent }
+\newlabel{code:guest}{{4.2}{23}{Stripped down version of a guest component for Wasmtime}{listing.caption.33}{}}
+\citation{gh:once-cell}
+\@writefile{lof}{\setforeignlanguage {english}}
+\@writefile{lot}{\setforeignlanguage {english}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Structure of the Wasmtime host directoy structure vis-à-vis with its logical structure.}}{24}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:host}{{4.5}{24}{Structure of the Wasmtime host directoy structure vis-à-vis with its logical structure}{figure.caption.35}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Host code}{24}{subsubsection*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Schematic implementation for WAMR}{24}{subsection.4.2.2}\protected@file@percent }
+\citation{lld}
+\citation{gh:wrs:error}
+\@writefile{lof}{\setforeignlanguage {english}}
+\@writefile{lot}{\setforeignlanguage {english}}
+\@writefile{lol}{\contentsline {listing}{\numberline {4.3}{\ignorespaces Usage of the \texttt  {with} keyword inside the \texttt  {bindgen}'s of \texttt  {device.rs} and \texttt  {display.rs}.}}{25}{listing.caption.36}\protected@file@percent }
+\newlabel{code:with}{{4.3}{25}{Usage of the \texttt {with} keyword inside the \texttt {bindgen}'s of \texttt {device.rs} and \texttt {display.rs}}{listing.caption.36}{}}
+\@writefile{lof}{\setforeignlanguage {english}}
+\@writefile{lot}{\setforeignlanguage {english}}
+\@writefile{lol}{\contentsline {listing}{\numberline {4.4}{\ignorespaces Stripped down version of a guest module for WAMR.}}{26}{listing.caption.37}\protected@file@percent }
+\newlabel{code:wamr:guest}{{4.4}{26}{Stripped down version of a guest module for WAMR}{listing.caption.37}{}}
 \@setckpt{chapters/7_corpus/3_implementations}{
-\setcounter{page}{19}
+\setcounter{page}{27}
 \setcounter{equation}{0}
-\setcounter{enumi}{0}
+\setcounter{enumi}{2}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{0}
+\setcounter{footnote}{1}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{4}
 \setcounter{section}{2}
-\setcounter{subsection}{3}
+\setcounter{subsection}{2}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{1}
-\setcounter{table}{0}
+\setcounter{figure}{5}
+\setcounter{table}{1}
 \setcounter{AM@survey}{0}
 \setcounter{float@type}{8}
 \setcounter{caption@flags}{2}
@@ -47,9 +96,9 @@
 \setcounter{@ppsaveapp}{0}
 \setcounter{lofdepth}{1}
 \setcounter{lotdepth}{1}
-\setcounter{FancyVerbLine}{27}
+\setcounter{FancyVerbLine}{16}
 \setcounter{linenumber}{1}
-\setcounter{LN@truepage}{30}
+\setcounter{LN@truepage}{38}
 \setcounter{FancyVerbWriteLine}{0}
 \setcounter{FancyVerbBufferIndex}{0}
 \setcounter{FancyVerbBufferLength}{0}
@@ -61,19 +110,20 @@
 \setcounter{FV@HighlightLinesStop}{0}
 \setcounter{FancyVerbLineBreakLast}{0}
 \setcounter{FV@BreakBufferDepth}{0}
-\setcounter{minted@FancyVerbLineTemp}{0}
-\setcounter{minted@pygmentizecounter}{1}
-\setcounter{listing}{1}
+\setcounter{minted@FancyVerbLineTemp}{18}
+\setcounter{minted@pygmentizecounter}{5}
+\setcounter{listing}{4}
 \setcounter{loldepth}{1}
 \setcounter{sublisting}{0}
 \setcounter{section@level}{0}
-\setcounter{Item}{0}
-\setcounter{Hfootnote}{2}
+\setcounter{Item}{2}
+\setcounter{Hfootnote}{3}
 \setcounter{Hy@AnnotLevel}{0}
-\setcounter{bookmark@seq@number}{37}
+\setcounter{bookmark@seq@number}{35}
 \setcounter{NAT@ctr}{0}
 \setcounter{parentequation}{0}
 \setcounter{su@anzahl}{0}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
+\setcounter{r@tfl@t}{0}
 }

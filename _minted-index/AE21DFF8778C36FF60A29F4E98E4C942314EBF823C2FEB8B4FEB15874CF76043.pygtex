@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}![no\PYGZus{}std]}
+\PYG{c+cp}{\PYGZsh{}![no\PYGZus{}main]}
+
+\PYG{c+cp}{\PYGZsh{}[link(wasm\PYGZus{}import\PYGZus{}module = }\PYG{l+s}{\PYGZdq{}host\PYGZdq{}}\PYG{c+cp}{)]}
+\PYG{k}{extern}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}C\PYGZdq{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{// The term \PYGZus{}slave\PYGZus{} is still used because `rppal` still uses this.}
+\PYG{+w}{    }\PYG{k}{fn} \PYG{n+nf}{host\PYGZus{}i2c\PYGZus{}write}\PYG{p}{(}\PYG{n}{slave\PYGZus{}address}: \PYG{k+kt}{u16}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}: \PYG{k+kt}{u8}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+cp}{\PYGZsh{}[export\PYGZus{}name = }\PYG{l+s}{\PYGZdq{}setup\PYGZdq{}}\PYG{c+cp}{]}
+\PYG{k}{pub}\PYG{+w}{ }\PYG{k}{fn} \PYG{n+nf}{setup}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{c+cm}{/* Omitting definition */}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{\PYGZsh{}[export\PYGZus{}name = }\PYG{l+s}{\PYGZdq{}write\PYGZdq{}}\PYG{c+cp}{]}
+\PYG{k}{pub}\PYG{+w}{ }\PYG{k}{fn} \PYG{n+nf}{write}\PYG{p}{(}\PYG{n}{d0}: \PYG{k+kt}{i32}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{d1}: \PYG{k+kt}{i32}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{d2}: \PYG{k+kt}{i32}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{d3}: \PYG{k+kt}{i32}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{c+cm}{/* Omitting definition */}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// Omitting the definition of a global alllocater and a panic handler,}
+\PYG{c+c1}{//  needed by Rust because of `no\PYGZus{}std`.}
+\end{Verbatim}

@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}![no\PYGZus{}std]}
+\PYG{c+cp}{\PYGZsh{}![no\PYGZus{}main]}
+\PYG{k}{mod} \PYG{n+nn}{bindings}\PYG{p}{;}
+
+\PYG{c+c1}{// To make the generated bindings compatible with the `embedded\PYGZhy{}hal` API}
+\PYG{n}{add\PYGZus{}i2c\PYGZus{}hal}\PYG{o}{!}\PYG{p}{(}\PYG{n}{i2c}\PYG{p}{);}
+
+\PYG{k}{struct} \PYG{n+nc}{Component}\PYG{+w}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+
+\PYG{k}{impl}\PYG{+w}{ }\PYG{n}{Guest}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{Component}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{c+c1}{// Omitting implementations of the exports inside of the binded world}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// Omitting the definition of a global alllocater and a panic handler,}
+\PYG{c+c1}{//  needed by Rust because of `no\PYGZus{}std`.}
+
+\PYG{n}{bindings}::\PYG{n}{export}\PYG{o}{!}\PYG{p}{(}\PYG{n}{Component}\PYG{+w}{ }\PYG{n}{with\PYGZus{}types\PYGZus{}in}\PYG{+w}{ }\PYG{n}{bindings}\PYG{p}{);}
+\end{Verbatim}

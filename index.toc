@@ -6,43 +6,44 @@
 \contentsline {chapter}{List of Acronyms}{x}{section*.7}%
 \contentsline {chapter}{List of Code Fragments}{xii}{section*.9}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}WIP}{1}{section*.10}%
-\contentsline {section}{\numberline {1.2}Onderzoeksvragen}{1}{section*.11}%
-\contentsline {chapter}{\numberline {2}Background}{2}{chapter.2}%
-\contentsline {section}{\numberline {2.1}I2C fundamentals}{2}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Operations}{2}{subsection.2.1.1}%
-\contentsline {subsubsection}{Bus sharing}{3}{subsubsection*.13}%
-\contentsline {subsubsection}{Methods}{3}{subsubsection*.14}%
-\contentsline {subsection}{\numberline {2.1.2}SMBus}{4}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Interfacing hardware}{5}{section*.15}%
-\contentsline {subsection}{\numberline {2.2.1}Different versions of \texttt {embedded-hal}}{5}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Peripheral Access Crates}{5}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Running the solution}{6}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}WebAssembly}{7}{section*.16}%
-\contentsline {subsection}{\numberline {2.3.1}JavaScript integration}{7}{subsection.2.3.1}%
-\contentsline {section}{\numberline {2.4}WebAssembly System Interface}{8}{section*.17}%
-\contentsline {subsection}{\numberline {2.4.1}WIT}{8}{subsection.2.4.1}%
-\contentsline {subsubsection}{\texttt {witx}}{9}{subsubsection*.18}%
-\contentsline {subsection}{\numberline {2.4.2}Versions}{9}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Runtimes}{9}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}The Component Model}{11}{section*.19}%
-\contentsline {subsection}{\numberline {2.5.1}Toolchain}{11}{subsection.2.5.1}%
-\contentsline {subsubsection}{Adapter modules}{11}{subsubsection*.20}%
-\contentsline {subsection}{\numberline {2.5.2}Running components}{12}{subsection.2.5.2}%
-\contentsline {chapter}{\numberline {3}Architecture and standard}{13}{chapter.3}%
-\contentsline {section}{\numberline {3.1}The proposal process}{13}{section*.21}%
-\contentsline {subsection}{\numberline {3.1.1}Community}{14}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Current \texttt {wasi:i2c} phase}{14}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Alternatives to Wasm}{14}{section*.22}%
-\contentsline {chapter}{\numberline {4}Implementations}{15}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Embedded driver development in Rust}{16}{section*.24}%
-\contentsline {section}{\numberline {4.2}Embedded driver development in WebAssembly}{16}{section*.25}%
-\contentsline {subsection}{\numberline {4.2.1}Wasmtime}{16}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}WAMR}{16}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Problems}{17}{subsection.4.2.3}%
-\contentsline {chapter}{\numberline {5}Evaluation}{19}{chapter.5}%
-\contentsline {chapter}{Conclusie}{20}{chapter*.27}%
-\contentsline {chapter}{References}{21}{chapter*.28}%
-\contentsline {chapter}{Appendices}{22}{section*.29}%
-\contentsline {section}{Bijlage A}{23}{section*.30}%
-\contentsline {section}{Bijlage B}{24}{section*.31}%
+\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}WebAssembly}{3}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}JavaScript integration}{3}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.2}WebAssembly System Interface}{4}{section*.10}%
+\contentsline {subsection}{\numberline {2.2.1}Design principles}{4}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}The standardization process}{5}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}WIT}{5}{subsection.2.2.3}%
+\contentsline {subsubsection}{\texttt {witx}}{6}{subsubsection*.11}%
+\contentsline {subsection}{\numberline {2.2.4}Versions}{6}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Runtimes}{6}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}Alternatives}{7}{subsection.2.2.6}%
+\contentsline {section}{\numberline {2.3}The Component Model}{9}{section*.12}%
+\contentsline {subsection}{\numberline {2.3.1}Toolchain}{9}{subsection.2.3.1}%
+\contentsline {subsubsection}{Adapter modules}{9}{subsubsection*.13}%
+\contentsline {subsection}{\numberline {2.3.2}Running components}{10}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}I2C fundamentals}{11}{section*.14}%
+\contentsline {subsection}{\numberline {2.4.1}Operations}{11}{subsection.2.4.1}%
+\contentsline {subsubsection}{Bus sharing}{11}{subsubsection*.16}%
+\contentsline {subsubsection}{Methods}{12}{subsubsection*.17}%
+\contentsline {subsection}{\numberline {2.4.2}SMBus}{12}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Interfacing hardware}{14}{section*.18}%
+\contentsline {subsection}{\numberline {2.5.1}Different versions of \texttt {embedded-hal}}{14}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Peripheral Access Crates}{14}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Running the solution}{15}{subsection.2.5.3}%
+\contentsline {chapter}{\numberline {3}Architecture and standard}{16}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Asynchronous I2C}{17}{section*.20}%
+\contentsline {section}{\numberline {3.2}Portability criteria}{17}{section*.21}%
+\contentsline {chapter}{\numberline {4}Implementations}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Native development in Rust}{21}{section*.26}%
+\contentsline {section}{\numberline {4.2}Embedded driver development in WebAssembly}{21}{section*.27}%
+\contentsline {subsection}{\numberline {4.2.1}Schematic implementation for Wasmtime}{22}{subsection.4.2.1}%
+\contentsline {subsubsection}{WIT world}{22}{subsubsection*.29}%
+\contentsline {subsubsection}{Guest code}{23}{subsubsection*.32}%
+\contentsline {subsubsection}{Host code}{24}{subsubsection*.34}%
+\contentsline {subsection}{\numberline {4.2.2}Schematic implementation for WAMR}{24}{subsection.4.2.2}%
+\contentsline {chapter}{\numberline {5}Evaluation}{27}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Evaluation setup}{27}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Functional evaluation}{28}{section*.38}%
+\contentsline {section}{\numberline {5.3}Benchmarks}{28}{section*.40}%
+\contentsline {chapter}{Conclusion}{35}{chapter*.49}%
+\contentsline {chapter}{References}{36}{chapter*.50}%

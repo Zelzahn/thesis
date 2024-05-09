@@ -23,56 +23,74 @@ Reallocated singl_function (elt_size=8) to 100 items from 50.
 Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
 Reallocated singl_function (elt_size=8) to 100 items from 50.
 Database file #1: references.bib
-Warning--string name "april" is undefined
---line 5 of file references.bib
 Warning--string name "november" is undefined
---line 23 of file references.bib
-Warning--entry type for "wasi" isn't style-file defined
---line 51 of file references.bib
+--line 31 of file references.bib
+Warning--string name "september" is undefined
+--line 39 of file references.bib
+Warning--string name "april" is undefined
+--line 47 of file references.bib
+Warning--string name "january" is undefined
+--line 55 of file references.bib
+Warning--string name "april" is undefined
+--line 133 of file references.bib
+Warning--string name "march" is undefined
+--line 279 of file references.bib
+Warning--string name "march" is undefined
+--line 287 of file references.bib
+Warning--string name "september" is undefined
+--line 303 of file references.bib
+Warning--string name "february" is undefined
+--line 311 of file references.bib
+Warning--string name "april" is undefined
+--line 331 of file references.bib
+Warning--string name "november" is undefined
+--line 349 of file references.bib
+Warning--string name "august" is undefined
+--line 357 of file references.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 6 entries,
+You've used 57 entries,
             4087 wiz_defined-function locations,
-            867 strings with 9031 characters,
-and the built_in function-call counts, 3424 in all, are:
-= -- 211
-> -- 164
-< -- 0
-+ -- 82
-- -- 40
-* -- 162
-:= -- 516
-add.period$ -- 10
-call.type$ -- 6
-change.case$ -- 6
+            1062 strings with 14186 characters,
+and the built_in function-call counts, 21097 in all, are:
+= -- 1541
+> -- 402
+< -- 3
++ -- 199
+- -- 98
+* -- 657
+:= -- 3599
+add.period$ -- 111
+call.type$ -- 57
+change.case$ -- 56
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 260
-empty$ -- 281
-format.name$ -- 42
-if$ -- 760
+cite$ -- 57
+duplicate$ -- 1869
+empty$ -- 2160
+format.name$ -- 105
+if$ -- 4753
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 78
-newline$ -- 43
-num.names$ -- 4
-pop$ -- 212
+int.to.str$ -- 57
+missing$ -- 437
+newline$ -- 202
+num.names$ -- 54
+pop$ -- 1168
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 244
+skip$ -- 1756
 stack$ -- 0
-substring$ -- 8
-swap$ -- 186
-text.length$ -- 0
+substring$ -- 76
+swap$ -- 1044
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 6
+type$ -- 57
 warning$ -- 0
-while$ -- 4
-width$ -- 7
-write$ -- 72
-(There were 3 warnings)
+while$ -- 55
+width$ -- 59
+write$ -- 454
+(There were 12 warnings)

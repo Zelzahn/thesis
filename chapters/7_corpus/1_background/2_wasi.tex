@@ -1,0 +1,120 @@
+\section{WebAssembly System Interface}
+\label{sec:wasi}
+
+\gls{WASI}~\cite{wasi} is a modular collection of \gls{API} proposals defined with the \gls{WIT} IDL. It provides a secure and portable way to access several operating-system-like features such as filesystems, networking, clocks and random numbers. This collection is developed under the governance of the \gls{WASI} Subgroup, a subgroup of the W3C's, the World Wide Web Consortium, WebAssembly Community Group.
+
+This subgroup doesn't provide any implementations, for this the Bytecode Alliance~\cite{ba:announce} exists, a nonprofit organization of companies containing Fastly, Fermyon, Cosmonic, Intel, Microsoft, Siemens and more. Inside this organization, there's also a subcommunity of people interested in the combination of \gls{Wasm} and embedded devices. To ratify this subcommunity, a request for a \gls{SIG} Embedded has been opened with the Bytecode Alliance.
+
+\subsection{Design principles}
+\label{sec:design}
+
+The following design principles are core:
+
+\begin{itemize}
+    \item Capability-based security: All access to external resources is provided by capabilities.
+    \item Interposition: A Webassembly instance can implement a given WASI interface, and the consumer WebAssembly instance can then use this implementation transparently.
+    \item Compatibility: If possible, keep the \gls{API} free of Compatibility concerns, and provide compatibility through libraries.
+    \item Portability: The exact meaning of this is specific to each \gls{API}, but in globo it means that no engine should need to implement every \gls{API} in \gls{WASI}.
+    \item Modularity: The component model's worlds mechanism is used, in order to allow specific sets of APIs to be described which meet the needs of different environments. See chapter~\ref{chap:component_model}.
+\end{itemize}
+
+From these, capability-based security can be seen as the key defining feature. Capability-based security dictates that access to external resources must be denied, unless it is authorized via capabilities~\cite{cap-security}. In the context of \gls{WASI}, there are two kinds of capabilities:
+
+\begin{itemize}
+    \item Handles: Dynamically indetify and provide access to resources via a 32-bit integer index. This is analogue to file descriptors.
+    \item Link-time capabilities: Functions that require no handle arguments. These are used in situations where it's not necessary to identify more than one instance of a resource at runtime. Used sparingly.
+\end{itemize}
+
+For this security model to work correctly, its default to block all external accesses must be airtight, i.e. the runtime needs to be secure.
+
+\subsection{The standardization process}
+
+The \gls{WASI} subgroup is further split up into the Community Group and the Working Group. The purpose of the Community Group is to attempt to address all concerns, but no 100\% consensus is needed. The Working Group, on the other hand, is there to finalize and ratify mostly complete specifications plus test suites from the Community Group.
+
+% This means that they are responsible for any proposed changes to this collection of interfaces to be thoroughly vetted by the community.
+
+The process is split up into five stages of standardization:
+
+\begin{description}
+    \item[Phase 0.] Pre-Proposal: The Community Group decides whether the pre-proposal is in scope for \gls{WASI}.
+    \item[Phase 1.] Proposement of the feature: An overview document must be produced that specifies the feature with reasonably precise and complete language.
+    \item[Phase 2.] Specification text is available: A test suite should be added, and it should pass on the prototype or some other implementation.
+    \item[Phase 3.] The specification gets implemented by engines.
+    \item[Phase 4.] The feature is being standardized: Ownership gets transferred from the Community Group to the Working Group, and two or more Web \gls{VM}'s have implemented the feature.
+    \item[Phase 5.] The feature is standardized: Editors perform final editorial tweaks and merge the feature into the main branch of the primary specification repository.
+
+\end{description}
+
+To go from the one stage to the following, a vote in the subgroup needs to be passed. Except to enter phase 0, here the proposal is still merely an idea.
+
+\subsection{WIT}
+\label{sec:wit}
+% [Schetsen wat WIT is en kort hoe de syntax in elkaar zit. Misschien dat het ook handig kan zijn om uit te leggen hoe dependencies in WIT gemanaged worden.]
+
+\gls{WIT} is an \gls{IDL}. This means that it is a format that defines how the interface of a component should look like. To this end, it uses the following set of concepts: types, functions, interfaces, worlds and packages. From these, worlds are the most key.
+
+A world describes the capabilities and needs of a component - it says which interfaces are available for outside code to call, the \texttt{export}s, and which interfaces it depends on, the \texttt{import}s. Thus, only the surface of a component is defined, not the internal behaviour. The internal behaviour is determined when the world is targeted by a component an application or library developer creates. For a component to run, its imports must be fulfilled, by a host or by other components. \\
+On the other hand, a world defines an environment in which a component can be instantiated, and its functionality can be invoked.
+
+Regarding the other concepts, functions can only be declared as part of an interface, or as an import or export in a world. Finally, a package is not a world, but can be seen as more like a namespace. It's a way of grouping related interfaces and worlds together for ease of discovery and reference.
+
+\gls{WIT} also provides built-in types, including primitives like signed and unsigned integer types, floats, strings, and more complex types like results, options and lists. In these, there are two small intricacies worth pointing out. First, both the \texttt{char} and \texttt{string} types are Unicode. Second, there's the user-defined \texttt{resource} type. This type can be seen as an object that implements an interface, and therefore behaviour is only exposed through methods.
+
+
+To make managing dependencies inside your \gls{WIT} definition easier, the \texttt{wit-deps}~\cite{gh:wit_deps} project can be used. It makes it possible to lock your dependencies to a certain version and to check if they're the most recent one.
+
+\subsubsection{\texttt{witx}}
+
+In older tooling, it is possible to come across \texttt{witx} instead of \gls{WIT}. This was the \gls{IDL} used during \texttt{Preview 1}. It was derived from \texttt{wat}, see chapter~\ref{chap:wasm}, and had a low-level C-like type system that emphasized raw pointers, and callees were expected to have access to the entir lineair memory of the caller.
+
+\subsection{Versions}
+\label{sec:versions}
+At the time of writing, \gls{WASI} is in \texttt{Preview 2}. The flagship feature of this preview is the release of the component model, see section~\ref{chap:component_model}. Furthermore, two \gls{WIT} worlds are now included:
+
+\begin{itemize}
+    \item \texttt{wasi-cli}: A command-line interface, roughly corresponding to \texttt{POSIX}.
+    \item \texttt{wasi-http}: An \texttt{HTTP} proxy.
+\end{itemize}
+
+The major banner of the upcoming \texttt{0.3} is asynchronous support. The exact details of what this asynchrony entails is yet to be determined. Following up will be a stable 1.0 release.
+
+\subsection{Runtimes}
+\label{sec:runtimes}
+% [Wasmtime uitvoerig bespreken, maar ook de meest belangrijke andere runtimes. Het is niet de bedoeling om echt in depth te gaan vergelijken en te benchmarken, maar om gewoon wat te schetsen wat er allemaal is. Daarnaast ook vertellen in welke mate, en hoe, je een preview2 component op een runtime kan laten draaien dat geen support heeft voor het component model. Misschien ook kort iets rond changes die in Wasmtime kunnen gebeuren om meer embedded devices te supporten.]
+
+A runtime system is a binary that is accountable for the running of \gls{Wasm} binaries. Analogue to the role of a hypervisor for a virtual machine. Depending on the capabilities of the runtime, it contains the following noteworthy high-level items:
+
+\begin{description}
+    \item[Engine:] An engine stores and configures global compilation settings like optimization level, enabled wasm features, etc.
+    \item[Module:] This represents a compiled form of the input preview 1 wasm module.
+    \item[Component:] A compiled preview 2 component ready to be instantiated.
+    \item[Linker:] A component-style location for defining host functions. This is not the same as \texttt{wasmtime::Linker} for modules.
+    \item[Instance:] An instance of a component, or module, is the actual object on which the functions are called.
+    \item[Store:] The store owns the instances, functions, globals, etc.
+\end{description}
+
+The Bytecode Alliance maintains two runtimes, Wasmtime~\cite{wasmtime} and WAMR~\cite{gh:wamr}.
+
+Wasmtime can be seen as a general-purpose runtime, focussing on server-side and non-web embeddings with components. It has full component model support, first-class support for eight languages, and community support for a further two. This makes it the de-facto runtime.
+
+On the other hand, \gls{WAMR} is specifically designed to be as lightweight as possible, targeting embedded devices and the edge. This translates itself into the provided features and the supported guest languages. Support for the component model is planned for the end of 2024, and it only has robust support for C/C++. A toolkit for Rust has been published in March 2024~\cite{gh:wrsdk}, but this is still novel.
+
+In Rust, the standard library, abbreviated as \texttt{std}, is a set of minimal shared abstractions for the broader Rust ecosystem. This library is enabled by default, and can be opted out via the \texttt{no\_std} attribute. Rejection is useful when targeting a platform that does not support the library or purposfully doesn't use the capabilities of \texttt{std}. Historically, the community surrounding Wasmtime has been strongly opposed to the inclusion of a \texttt{no\_std} build. This is no longer the case. When such a build will eventually be available, the gap between Wasmtime and \gls{WAMR} will be reduced.
+
+Besides these two, there are numerous ones provided by other parties, in varying degrees of completeness, targeting other use-cases. There's for example Jco~\cite{jco}, specialized for JavaScript, componentize.py~\cite{gh:cpy}, for Python, or Chicory~\cite{yt:chicory}, which runs on the Java \gls{VM}. These are out-of-scope for this dissertation.
+
+\subsection{Alternatives}
+
+% 2. Bredere exploratie voor alternatieve oplossingen
+% 	1. Hoe I2C aangesproken wordt vanuit nodejs (antwoord: ze geven linux handle) en via linux
+% 	2. WebUSB: Dit is via js dus barf
+% 	3. Hier kan er hard gegaan worden op linken met academische artikels
+
+Inside the \gls{Wasm} ecosystem, there's mechanoid~\cite{mechanoid}, a framework for applications on embedded systems and \gls{IoT} devices that had its first release in March 2024. The framework itself is written in Go, and it has builtin support for the wazero~\cite{wazero} and wasman~\cite{gh:wasman} runtimes. Both runtimes specifically designed for Go developers. It doesn't use \gls{WASI}, nor does it have any plans for this. This makes it unsuitable for us.
+
+In the Node.js ecosystem, the most prominent package available for an \gls{I2C} connection is \texttt{i2c-bus}~\cite{gh:i2c-bus}. This is an addon written in C++ that operates directly on a given file descriptor.
+
+For the web, \texttt{chirimen-drivers}~\cite{chirimen} could be used, but the documentation is completely written in Japanese. Alternatively, combined use of the WebUSB and Web Serial \gls{API} could be done, but unfortunately the Web Serial \gls{API} is only available in Chrome, Edge and Opera.
+
+On Windows, \gls{I2C} communication can be performed via the \\texttt{HIDI2C.sys}~\cite{windows:i2c} driver. Linux allows access to a device from userspace, through the \texttt{/dev}~\cite{linux:i2c} interface. For this, the \texttt{i2c-dev} kernel module needs to be loaded. Each registered adapter gets a number, starting at 0. To start the communication, first the device file needs to be opened and then the target address must be set with \texttt{ioctl(file, I2C\_SLAVE, addr)}. Finally, on macOS the connection is controlled with the \texttt{IOI2CInterface.h}~\cite{macos:i2c} interface inside the \texttt{IOKit} framework.
+

@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// device.rs}
+\PYG{n}{bindgen}\PYG{o}{!}\PYG{p}{(\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{path}: \PYG{l+s}{\PYGZdq{}../wit/deps/i2c\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{world}: \PYG{l+s}{\PYGZdq{}wasi:i2c/imports\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{with}: \PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{l+s}{\PYGZdq{}wasi:i2c/i2c/i2c\PYGZdq{}}: \PYG{n+nc}{device}::\PYG{n}{I2c}\PYG{p}{,}
+\PYG{+w}{        }\PYG{l+s}{\PYGZdq{}wasi:i2c/delay/delay\PYGZdq{}}: \PYG{n+nc}{device}::\PYG{n}{Delay}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{});}
+\PYG{c+c1}{// display.rs}
+\PYG{n}{bindgen}\PYG{o}{!}\PYG{p}{(\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{path}: \PYG{l+s}{\PYGZdq{}../wit\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{world}: \PYG{l+s}{\PYGZdq{}screen\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{with}: \PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{l+s}{\PYGZdq{}wasi:i2c/i2c/i2c\PYGZdq{}}: \PYG{n+nc}{device}::\PYG{n}{I2c}\PYG{p}{,}
+\PYG{+w}{        }\PYG{l+s}{\PYGZdq{}wasi:i2c/delay/delay\PYGZdq{}}: \PYG{n+nc}{device}::\PYG{n}{Delay}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{});}
+\end{Verbatim}
