@@ -1,4 +1,11 @@
-\chapter*{Abstract - Dutch}
-\chaptermark{Abstract - Dutch}
-\addcontentsline{toc}{chapter}{Abstract - Dutch}
+\chapter*{Samenvatting}
+\chaptermark{Samenvatting}
+\addcontentsline{toc}{chapter}{Samenvatting}
 
+Dit proefschrift richt zich op de dringende behoefte aan robuuste en veilige softwareoplossingen in kritieke infrastructuursystemen, waar plotselinge storingen ernstige gevolgen kunnen hebben. Het onderstreept het belang van tijdige software-updates, vooral in industrieën als de auto-industrie, gezondheidszorg en transport. Het benadrukt de noodzaak van naadloze rollback-mechanismen in geval van storingen. 
+
+Het onderzoek introduceert WebAssembly en WebAssembly System Interface als veelbelovende technologieën voor dergelijke toepassingen, maar identificeert een kritiek gat in hun ondersteuning voor het veelgebruikte I2C-protocol in IoT-apparaten. 
+
+Het primaire doel van dit onderzoek is om deze kloof te overbruggen door I2C-connectiviteit mogelijk te maken voor Wasm-applicaties, met inachtneming van strenge beveiligings-, betrouwbaarheids- en overheadbeperkingen. Daarnaast heeft het proefschrift als doel om deze aanpak te standaardiseren, waardoor de wijdverspreide toepassing in de industrie wordt bevorderd en de duurzaamheid op lange termijn van kritieke infrastructuursystemen wordt gegarandeerd.
+
+Om dit te vergemakkelijken worden de \texttt{wasi-i2c} interfaces voorgesteld. Deze interfaces volgen het capability-based security design principe, dat centraal staat binnen WASI. Om de deugdelijkheid van \texttt{wasi-i2c} vast te stellen worden implementaties geleverd. Deze implementaties variëren van verschillende runtimes, platformen en architecturen. Daarna wordt een evaluatie van de gemiddelde uitvoeringstijd en het geheugengebruik uitgevoerd.

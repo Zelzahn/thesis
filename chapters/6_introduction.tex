@@ -6,14 +6,17 @@
 % 	1. Voorbeeld: Updaten van auto's
 % 	2. Er mag gelinkt worden met nieuwsartikels
 
-There are countless software solutions running on critical infrastructure, where sudden failure could result in the loss of people's live, e.g. programs guiding surgeons during operations, infotainment systems inside cars or train control systems. Due to a variety of reasons, the longevity of this hardware often spans multiple decades~\cite{ars:trains}. Furthermore, in the automotive industry, there's a clear trend towards more advanced infotainment systems and more software-defined vehicles. Ideally, these applications should be kept up to date regularly with security enhancements or feature improvements. To this end, there's a rapidly growing practice of wirelessly distributing software updates to vechicles, called over-the-air~\cite{aptiv:ota}.
-When such an update fails to perform, it should be possible to roll back this change without impact to the end-user. Thus, security and reliability are of upmost importance in these use-cases. Additionally, these solutions are often tightly integrated with \gls{IoT} devices with limited hardware capabilities. This augments the requirements with the demand for a minimal overhead.
+There are countless software solutions running on critical infrastructure, where sudden failure could result in the loss of people's live, e.g. programs guiding surgeons during operations, infotainment systems inside cars or train control systems. Additionally, consumer products ranging from baby-monitors to smart-watches are omnipresent in everyone's life. Due to a variety of reasons, the longevity of this hardware often spans multiple decades~\cite{ars:trains}.  That's why the European Parliament has approved the Cyber Resilience Act on the twelfth of March 2024~\cite{eu:cra:update}. This Act aims to see inadequate security features of such products and software to become a thing of the past. To this end, it will obligate manufacturer's to ensure, among others, that for the duration of the support period, vulnerabilities are handled effectively. Furthermore, security updates need to be made available to users for the time the product is expected to be in use~\cite{eu:cra}. Besides, in the automotive industry, there's a clear trend towards more advanced infotainment systems and more software-defined vehicles. Ideally, these applications should be kept up to date regularly with security enhancements or feature improvements. To this end, there's a rapidly growing practice of wirelessly distributing software updates to vechicles, called over-the-air~\cite{aptiv:ota}.
+When such an update fails to perform, it should be possible to roll back this change without impact to the end-user. Thus, security and reliability are of upmost importance in these use-cases. Additionally, these solutions are frequently tightly integrated with \gls{IoT} devices with limited hardware capabilities. This augments the requirements with the demand for a minimal overhead.
+
 
 % Deze paragraaf is opgesplitst in 2 delen:
 % 1. WASM, WASI en component model _aims_ to fullfill this
 % 2. Maar, dit en dit ontbreekt nog.
 \gls{Wasm}, and \gls{WASI}, is the technology that aims to fullfill all these requirements. Created to execute binary code alongside JavaScript inside the browser, it is now actively used outside this environment via \gls{WASI}. This system interface is a set of APIs that facilitates interaction with the filesystem, HTTP calls, a Command-Line Interface etc. With the advent of its second preview release also came the release of the component model, an architecture for building interoperable \gls{Wasm} libraries, applications, and environments. \\
 But currently, these technologies merely aim to, and thus not satisfy, these requirements. Specifically, there aren't any interfaces yet for the \gls{I2C} protocol. This protocol defines a serial communication bus widely used in the \gls{IoT} ecosystem, like smart cars, health machines etc.
+
+\newpage
 
 The goal of this dissertation is to facilitate the \gls{I2C} connection between \gls{Wasm} applications and its underlying hardware and sensors, while still adhering to the requirements. Furthermore, this dissertation also tries to standardize this method. Effectively enabling its use in the industry and ensuring sustainability. This leads to the following research questions:
 
@@ -25,7 +28,7 @@ The goal of this dissertation is to facilitate the \gls{I2C} connection between 
     \item[RQ5] How suitable is the \gls{WASI} Component Model for microcontrollers with constrained resources.
 \end{description}
 
-Chapter~\ref{chap:bg} provides a writeup of all the necessary background knowledge. Chapter~\ref{chap:architecture} gives an overview of the standardization effort. Chapter~\ref{chap:implementation} demonstrates implementations that make use of I2C as part of Wasm. Following up, chapter~\ref{chap:evaluation} gives an in-depth review of the overhead. 
+Chapter~\ref{chap:bg} provides a writeup of all the necessary background knowledge. Chapter~\ref{chap:architecture} gives an overview of the standardization effort. Chapter~\ref{chap:implementation} demonstrates implementations that make use of I2C as part of Wasm. Following up, Chapter~\ref{chap:evaluation} gives an in-depth review of the overhead. 
 % Component model introduceren, zo dieper gaan op hardware en I2C
 % 	1. Probleem: Wasm heeft geen manier om met hardware te praten
 % 	2. En dan dit probleem uitdiepen: Wasi, I2C

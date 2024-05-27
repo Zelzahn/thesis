@@ -30,6 +30,8 @@ Initial communication is established by a controller that sends a START followed
 
 Further communication is performed by one party sending data, most significant bit first, and the other sending an \gls{ACK} bit.
 
+\newpage
+
 \subsubsection{Bus sharing}
 
 In the case of multiple targets linked with one controller, the controller needs to indicate which target it wants to interact with. To achieve this, each target compares the address sent by the controller with its own. If the address matches, it sends a low voltage \gls{ACK} bit back to the controller. If the address doesn't match, the target does nothing and the \gls{SDA} line remains high.

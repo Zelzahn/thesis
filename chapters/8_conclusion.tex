@@ -2,7 +2,27 @@
 \chaptermark{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}  
 
-[Terugblikken naar de introductie en wat ik allemaal bijgeleerd heb.]
+% [Terugblikken naar de introductie en wat ik allemaal bijgeleerd heb.]
+%
+% Vertellen over SPI.
+% [Het nog verder advancen van de proposal enbespreken van dingen waar ik niet klaar mee geraakt ben.]
 
-Vertellen over SPI.
-[Het nog verder advancen van de proposal enbespreken van dingen waar ik niet klaar mee geraakt ben.]
+As an answer to the first research question, this dissertation demonstrates that, thanks to the provided interfaces inside \texttt{wasi-i2c}, it's possible for a \gls{Wasm} component to control a device using \gls{I2C}. To minimize any migration costs from existing applications to WebAssembly, the \texttt{wasi-embedded-hal} crate is provided. With this crate, it is possible to easily interoperate with device crates inside the Rust \texttt{embedded-hal} ecosystem. Although the proposal is heavily inspired by, and integration is offered for, this ecosystem, it is designed in such a way that no implementation should need to use \texttt{embedded-hal} in order to be successful.
+
+Furthermore, to resolve the second research question, the aforementioned interfaces have been brought from a mere idea to fully-fledged interface standard proposals ready for feedback from the WebAssembly Community Group. Thus, from phase zero to phase two. In this \gls{API}, as part of the third research question, two capabilities are provided, one for I2C and one for delays. More fine-grained control over these capabilities is something that's currently lacking, but certainly feasible to achieve. 
+
+To address the fourth question, the overhead is defined as a dichotomy of the mean execution time and the peak memory usage. With only an increase of 1.65\% in mean execution time, and having an 8.93\% higher peak memory usage over the complete lifespan of the application, the overhead of the \gls{WAMR} runtime is seen as negligble. For Wasmtime, some considerations apply. First, each \gls{WASI} interface added into the linker incurs extra overhead. Second and last, before executing the component itself, the runtime first instantiates it. It is possible to do this instantiation a priori, but this isn't guaranteed to work on other machines. For this, the runtime engine should be configured in a peculiar way. This is seen as an open challenge. With these considerations, the mean execution time is -3.86\% and peak memory usage is 15.87 times more when compared to native. 
+
+This stark increase in memory consumption indicates that Wasmtime, and by extension the component model, incurs a hefty memory overhead. Efforts are underway to align this overhead more with WAMR's, but this in an early stage. Thus, to answer the fifth research question, in its current state the \gls{WASI} component model is not suitable to run on devices with constrained resources.
+
+\subsection*{Open challenges}
+
+The following items are seen as open challenges:
+
+\begin{itemize}
+    \item The design principles of the \texttt{wasi-i2c} proposal could be applied to similar protocols, e.g. \gls{SPI}.
+    \item Not every platform of the capability criteria has a reference implementation yet.
+    \item The efforts to reduce Wasmtime's memory allocations are still in an early stage.
+    \item A finer configuration of the \gls{I2C} connection is currently not possible in \texttt{wasi-i2c}.
+    \item A manageable manner to pre-instantiate components across platforms is missing. 
+\end{itemize}

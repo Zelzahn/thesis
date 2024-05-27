@@ -1,5 +1,13 @@
-\chapter*{Abstract - English}
-\chaptermark{Abstract - English}
-\addcontentsline{toc}{chapter}{Abstract - English}
+\chapter*{Summary}
+\chaptermark{Summary}
+\addcontentsline{toc}{chapter}{Summary}
+
+This dissertation addresses the pressing need for robust and secure software solutions in critical infrastructure systems, where sudden failures could have dire consequences. It underscores the importance of timely software updates, especially in industries like automotive, healthcare, and transportation, while emphasizing the necessity for seamless rollback mechanisms in case of failures. 
+
+The study introduces WebAssembly and WebAssembly System Interface as promising technologies for such applications, but identifies a critical gap in their support for the widely used I2C protocol in IoT devices. 
+
+The primary objective of this research is to bridge this gap by enabling I2C connectivity for Wasm applications while adhering to stringent security, reliability, and overhead constraints. Additionally, the dissertation aims to standardize this approach, thereby promoting its widespread adoption in the industry and ensuring long-term sustainability of critical infrastructure systems.
+
+To facilitate this, the \texttt{wasi-i2c} interfaces are proposed. These interfaces follow the capability-based security design principle, which is key inside WASI. To ascertain the soundness of \texttt{wasi-i2c} implementations are provided. These implementations range over a variety of runtimes, platforms, and architectures. Afterwards, an evaluation on the mean execution time and memory usage is performed.
 
 

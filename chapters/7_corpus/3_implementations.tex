@@ -2,7 +2,22 @@
 \label{chap:implementation}
 % [De hele hardware setup uitleggen, dus de verschillende Pi's en de apparaten waar er mee gepraat wordt.]
 
-Implementations are provided to ascertain the soundness of the \gls{WIT} interfaces from \texttt{wasi:i2c}. These solutions reside inside the \texttt{i2c-wasm-components} repository~\cite{gh:iwc}. Figure~\ref{fig:dirtree} contains the parts that are noteworthy.
+Implementations are provided to ascertain the soundness of the \gls{WIT} interfaces from \texttt{wasi:i2c}, an overview can be found in Table~\ref{tab:impls}. These solutions reside inside the \texttt{i2c-wasm-components} repository~\cite{gh:iwc}. Figure~\ref{fig:dirtree} contains the parts that are noteworthy.
+
+\begin{table}[h]
+	\centering
+	\captionsetup{justification=centering}
+	\begin{tabular}{c c l}
+		\toprule
+		Connected device & Hardware \\ \midrule
+        HTS221 sensor & Raspberry Pi 3 Model B \\
+        4-digit 7-segment display & Raspberry Pi 4 Model B \\
+        4-digit 7-segment display & Raspberry Pi Pico  \\
+		\bottomrule
+	\end{tabular}
+    \caption{Concise overview of the setups}
+	\label{tab:impls}
+\end{table}
 
 \begin{figure}[h]
 \dirtree{%
@@ -30,7 +45,7 @@ Implementations are provided to ascertain the soundness of the \gls{WIT} interfa
 
 As stated in section~\ref{sec:methods}, there are three basic types of methods, from which two are implemented, write and read. For writing, a 4-digit 7-segment display\footnote{Because each digit is represented by seven segments, parts of the latin alphabet can also be shown.} is used, and for reading a HTS221 sensor, from which the current temperature and humidity can be read. These are respectively \texttt{segment\_led} and \texttt{hat} in the implementation.
 
-The sensor is part of a \gls{HAT} mounted atop of a Raspberry Pi 3 Model B via its 40-pin GPIO header, see Figure~\ref{fig:pi3}. Although it is connected this way, reading from the sensor is still done via \gls{I2C}. The display, on the other hand, is a standalone device and can thus easily be hooked up with a different controller. As a controller, we use a Raspberry Pi 4 Model B, Figure~\ref{fig:pi4}, and a Raspberry Pi Pico, Figure~\ref{fig:pi_pico}. The extra device the Pico is connected with is a debug probe, see section~\ref{sec:running}. Both the Pi 3 and the Pi 4 run on an ARM64 architecture and a Linux platform, contrarily, the Pico is an \gls{MCU} targeting RP2040. Table~\ref{tab:setups} shows a concise overview.
+The sensor is part of a \gls{HAT} mounted atop of a Raspberry Pi 3 Model B via its 40-pin GPIO header, see Figure~\ref{fig:pi3}. Although it is connected this way, reading from the sensor is still done via \gls{I2C}. The display, on the other hand, is a standalone device and can thus easily be hooked up with a different controller. As a controller, we use a Raspberry Pi 4 Model B, Figure~\ref{fig:pi4}, and a Raspberry Pi Pico, Figure~\ref{fig:pi_pico}. In this figure, the Pico is connected with a debug probe, see section~\ref{sec:running}. Both the Pi 3 and the Pi 4 run on an ARM64 architecture and a Linux platform, contrarily, the Pico is an \gls{MCU} targeting RP2040. Table~\ref{tab:setups} shows a concise overview.
 The used platform and architecture combinations are different from the portability criteria because these were decided before the criteria were decided upon.
 
 \begin{figure}[h!]
@@ -74,7 +89,7 @@ The used platform and architecture combinations are different from the portabili
 \end{table}
 
 
-\section{Native development in Rust}
+\section{Native implementations}
 The Pi 4 can build the codebase, but the other two lack the capabilities for this, thus cross-compilation needs to be performed. Fortunately, Rust provides great support for this via the \texttt{target} flag. ARM64 can be targeted with \texttt{aarch64-unknown-linux-gnu}, and RP2040 with \texttt{thumbv6m-none-eabi}.
 
 As the Pico is an MCU, it has some further requirements. First, it only supports \texttt{no\_std} build, see section~\ref{sec:runtimes}. Second, the memory layout also needs to be specified inside a file called \texttt{memory.x}.
@@ -85,7 +100,7 @@ For the implementation running on the Pi 4 we write the current local time. To e
 % [Native driver development, hoe gaat het te werk en de grote verschillen voor native development voor een gewone Pi en een microcontroller zoals de Pi Pico.]
 % Besides the implementation itself, two things are of significance to design a device driver in Rust. Namely, following the Embedded \gls{HAL} \gls{API}, see chapter~\ref{chap:hardware}, and supporting the desired target architecture.
 
-\section{Embedded driver development in WebAssembly}
+\section{Implementations inside WebAssembly}
 % [Om van native naar Wasm te gaan, wat moet er veranderen.]embedded-hal 0.2 vs 1.0 vermelden
 
 To make the move from native to WebAssembly, everything related to the I2C connection itself is kept host-side. The device-specific logic, like reading the current temperature, is moved to the guest. Ideally, each implementation, conceptually, comes down to the schematic defined in Figure~\ref{fig:schematic}. But due to the myriad of differences between Wasmtime and WAMR, outlined in section~\ref{sec:runtimes}, no WebAssembly-specific code can be reused between them. This implementation, therefore, keeps everything each runtime interacts with inside two seperate directories.
@@ -97,7 +112,7 @@ To make the move from native to WebAssembly, everything related to the I2C conne
     \label{fig:schematic}
 \end{figure}
 
-\subsection{Schematic implementation for Wasmtime}
+\subsection{Implementations inside Wasmtime}
 
 The Wasmtime implementation consists of three directories: \texttt{guest}, \texttt{host} and \texttt{wit}. The \texttt{wit} directory specifies two worlds, corresponding with the two devices being interacted with. This implementation thus contains two implementations that follow the schematic described by Figure~\ref{fig:schematic}.
 
@@ -234,9 +249,9 @@ bindgen!({
 \label{code:with}
 \end{listing}
 
-\subsection{Schematic implementation for WAMR}
+\subsection{Implementations inside WAMR}
 
-This implementation represents the schematic from Figure~\ref{fig:schematic} for WAMR, hower there's no support for preview two. This aplication, thus, cannot make use of \gls{WIT}, nor pass a proper I2C connection to the guest because there's no notion of a WIT resource. Therefore, the connection is now kept global. In Rust, there's no default way to keep a variable global, but for this implementation the \texttt{once\_cell}~\cite{gh:once-cell} crate is used. 
+This implementation represents the schematic from Figure~\ref{fig:schematic} for WAMR, however there's no support for \gls{WASI} preview two. This aplication, thus, cannot make use of \gls{WIT}, nor pass a proper I2C connection to the guest because there's no notion of a WIT resource. Therefore, the connection is now kept global. In Rust, there's no default way to keep a variable global, but for this implementation the \texttt{once\_cell}~\cite{gh:once-cell} crate is used. 
 
 All guest-to-host and host-to-guest communication is considered unsafe on a memory-safety basis, this is because WAMR is written in C, a language infamous for how unsafe it is. Furthermore, the WAMR Rust SDK mandates that imports and exports are called and developed as extern C functions. This leads to a module implementation conceptualized by codefragment~\ref{code:wamr:guest}. The host cannot directly bind with the resulting binary, instead it has to register the import and find the exports. 
 For passing parameters to the exports, a vector of \texttt{WasmValue}s is passed. A \texttt{WasmValue} can be a void, 32-bit signed integer, 64-bit signed integer, 32-bit float, 64-bit float or a 128-bit signed integer. Each value is underlying stored as an array of 32-bit unsigned integers. The exported \texttt{setup}function can then be called with an array containing a \texttt{WasmValue::Void}, for \texttt{write} a vector of four \texttt{WasmValue::I32}'s are passed.

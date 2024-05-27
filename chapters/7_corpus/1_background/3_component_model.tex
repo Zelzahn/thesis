@@ -19,6 +19,8 @@ In Rust, \texttt{cargo-component} can be used to compile code to a preview 2 com
 
 Under the hood, \texttt{cargo-component} relies upon \texttt{wit-bindgen}~\cite{gh:wit-bindgen} for binding with the interface. Besides Rust, \texttt{wit-bindgen} also supports the following languages: C, Java, Go and C\#. For JavaScript, ComponentizeJS~\cite{gh:cjs} can be used.
 
+\newpage
+
 \subsubsection{Adapter modules}
 
 The Wasmtime runtime publishes adapter modules with each release, they provide the bridge between the \texttt{Preview 1} \gls{ABI} and the \texttt{Preview 2} \gls{ABI}. The following three modules are provided:

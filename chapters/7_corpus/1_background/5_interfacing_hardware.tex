@@ -14,7 +14,7 @@ Unfortunately, there are two major versions of \texttt{embedded-hal}, i.e. 0.2.7
 As version 1.0 was only released on the ninth of January 2024, it is still fairly novel. Thus, crates have a wildly varying degree of compliance with this version. 
 
 Broadly speaking, there are four major changes \cite{hal:1}. Firstly, traits have been simplified and others have been merged to remove interopability gotchas. 
-Secondly, async versions of the blocking traits are now available in the \texttt{embedded-hal-async} crate. Thirdly, there is now support for \gls{SPI} bus sharing. Lastly, there is improved error handling.
+Secondly, async versions of the blocking traits are now available in the \texttt{embedded-hal-async} crate. Thirdly, there is now support for \gls{SPI} bus sharing. Lastly and fourthly, there is improved error handling.
 
 There is a crate~\cite{gh:ehcl} that tries to provide a compatibility layer between these two versions, but the latest supported version is merely a release candidate of 1.0. Thus, the crate is not really practically useful.
 
@@ -29,7 +29,7 @@ When the target platform is an \gls{OS}, it is typically fairly easy to build an
 
 In the case of a Raspberry Pi Pico, compilation results in an \texttt{UF2} and an \texttt{ELF} file. The former is a file format developed by Microsoft for flashing microcontrollers over mass storage connections. The latter is used by the debugger.
 
-To pogram the flash on the Pico, the \texttt{BOOTSEL} button needs to be held. Forcing it into USB Mass Storage Mode. Then, you can move a \texttt{UF2} file onto it. Whereupon the \texttt{RP2040} processor of the Pico will reboot, unmount itself, and run the flashed code. Other boards could require pulling down the flash \texttt{CS} pin, which is how the \texttt{BOOTSEL} button works on the pico, using an exposed \gls{SWD} interface, also an option for the Pico, or have a reset button that needs to be double-pressed.
+To pogram the flash on the Pico, the \texttt{BOOTSEL} button needs to be held, forcing it into USB Mass Storage Mode. Then, you can move a \texttt{UF2} file onto it. Whereupon the \texttt{RP2040} processor of the Pico will reboot, unmount itself, and run the flashed code. Other boards could require pulling down the flash \texttt{CS} pin, which is how the \texttt{BOOTSEL} button works on the pico, using an exposed \gls{SWD} interface, also an option for the Pico, or have a reset button that needs to be double-pressed.
 
-\gls{SWD} is a standard interface on Cortex-M based microcontrollers, which the host machine can use to reset the board, load code into flash, and set the code running. Without the need to manuallyl reset the board or hold the \texttt{BOOTSEL} button. The easiest way to connect with this interface on a Pico is to make use of a debug probe via \texttt{probe-rs}~\cite{probe-rs}. This also unlocks the ability to print to \texttt{STDOUT} or even utilize the Debug Adapter Protocol~\cite{dap}.
+\gls{SWD} is a standard interface on Cortex-M based microcontrollers, which the host machine can use to reset the board, load code into flash, and set the code running. Without the need to manually reset the board or hold the \texttt{BOOTSEL} button. The easiest way to connect with this interface on a Pico is to make use of a debug probe via \texttt{probe-rs}~\cite{probe-rs}. This also unlocks the ability to print to \texttt{STDOUT} or even utilize the Debug Adapter Protocol~\cite{dap}.
 

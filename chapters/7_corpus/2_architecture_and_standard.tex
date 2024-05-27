@@ -4,23 +4,17 @@
 
 % 1. Primer om te vertellen wat nodig is om dan de rest te snappen
 
-Currently, the \gls{I2C} proposal~\cite{gh:i2c} is in the first phase, with ongoing effort to fullfill the criteria to pass the vote to the second phase. Specifically, the following requirements are yet to be met:
+Currently, the \gls{I2C} proposal~\cite{gh:i2c} is in the second phase, with ongoing effort to fullfill the criteria to pass the vote to the third phase. Specifically, the following requirements are yet to be met:
 
 \begin{itemize}
-    \item A broad enough of a consensus needs to be reached on the capability criteria
-    \item Some pull requests and issues are still open that iterate on the design of the feature
+    \item The proposal lacks a test suite that covers the feature.
+    \item Some pull requests and issues are still open that iterate on the design of the feature.
+    \item Updates to the reference interpreter are not yet required, but recommended.
 \end{itemize}
 
 This effort is led under the guidance of certain champions, for this proposal these are Friedrich Vandenberghe, Merlijn Sebrechts and Maximilian Seidler. Both Friedrich and Merlijn are from UGent, Maximilian is from Siemens. This mix of academians and people from the industry ensures ongoing standardization effort and actual usage of the feature.
 
-At the start of this thesis the proposal was merely an idea, but now it contains three \gls{WIT} files that follow the component model: \texttt{delay}, \texttt{i2c} and \texttt{world}. The first two closely follow the corresponding interfaces from \texttt{embedded-hal} version 1, \texttt{embedded-hal} is explained in section~\ref{sec:hardware}, but this crate is not necessary for an implementation. The philosphy behind this is the same as for why one would want to have an \texttt{embedded-hal}.
-
-% TODO: Dit aanvullen wanneer Merlijn op Dan geantwoord heeft.
-% https://github.com/WebAssembly/wasi-i2c/pull/9
-% In case of ambiguity the I2C standard should be followed.
-
-% TODO: Verwijzen naar Zephyr I2C API
-% https://github.com/WebAssembly/wasi-i2c/issues/6
+At the start of this thesis \texttt{wasi-i2c} was merely an idea, lacking any proposal or implementation, and thus technically, still residing in phase zero. But now it contains three \gls{WIT} files that follow the component model: \texttt{delay}, \texttt{i2c} and \texttt{world}. The first two closely follow the corresponding interfaces from \texttt{embedded-hal} version 1, \texttt{embedded-hal} is explained in section~\ref{sec:hardware}, but this crate is not necessary for an implementation. The philosphy behind this is the same as for why one would want to have an \texttt{embedded-hal}.
 
 \begin{listing}[h]
 \begin{minted}[samepage]{rust}
@@ -35,7 +29,7 @@ world imports {
 \label{code:world}
 \end{listing}
 
-The proposal defines two handles, for an explainer on handles see~\ref{sec:design}, one for \gls{I2C} and one for delays. These provide a pretty broad access, e.g. it is not possible to limit the \gls{I2C} connection to certain addresses. A more fine-grained control model is possible, but there's currently no demand for this.
+The proposal defines two handles, for an explainer on handles see~\ref{sec:design}, one for \gls{I2C} and one for delays. These provide pretty broad access, e.g. it is not possible to limit the \gls{I2C} connection to certain addresses. A more fine-grained control model is possible, but there's currently no demand for this.
 
 Inside the \texttt{i2c} interface, no explicit constructor is defined because \texttt{i2c} resources can be constructed in many different ways, so worlds that include this interface should also include a way to obtain \gls{I2C} handles. Typically, this is done by either having handles passed into exported functions as parameters, or by having handles returned from imported functions.
 The definition for \texttt{world.wit} can be found in codefragment~\ref{code:world}. The purpose of this world is to provide a way to import all the defined interfaces in the proposal at once.
@@ -48,10 +42,12 @@ Currently, the proposal is purely synchronous. To provide an asynchronous (async
 
 \begin{description}
     \item[Explicit] A seperate WIT API could be provided that depends on \texttt{wasi-io}~\cite{gh:io} polling. This could be implemented with the current tooling.
-    \item[Integrated] We could also wait for the Component Model to natively integrate async. The major upside to this approach is that a single WIT description can describe both a sync and async API. Caller and callee can each independently chose if they want to be sync or async, and they can be linked.
+    \item[Integrated] Wait for the Component Model to natively integrate async. The major upside to this approach is that a single WIT description can describe both a sync and async API. Caller and callee can each independently choose if they want to be sync or async, and they can be linked.
 \end{description}
 
 As there's no immediate need for this, the champions have decided that it is best to wait until the integrated option is mainstream.
+
+\newpage
 
 \section{Portability criteria}
 
@@ -72,6 +68,6 @@ An important part of a proposal is its portability criteria, with these the cham
 	\label{tab:criteria}
 \end{table}
 
-The champions, together with people from Siemens, Intel, Aptiv, Xiaomi, Amazon, Midokura, Sony, Atym and Bosch, have agreed upon a set of criteria for the proposal. These criteria can be found in table~\ref{tab:criteria}. For each criterium, reference hardware is provided, without these there would still be a lot of possible variety in RAM size, flash size and CPU speed. Herein Intel x86 is missing, but support for this is implied as this is the used architecture for developing Wasmtime. The Nucleo is chosen because this is the reference board for Siemens. The other two are chosen to showcase support for both RTOS and Linux, and ARM and RISC-V.
-As an extra requirement besides the targets, it is important that the interface is designed in such a way that memory usage is limited to the bare needed minimum. To ensure enough RAM left for the application itself.
+The champions, together with people from Siemens, Intel, Aptiv, Xiaomi, Amazon, Midokura, Sony, Atym and Bosch, have agreed upon a set of criteria for the proposal. These criteria can be found in Table~\ref{tab:criteria}. For each criterium, reference hardware is provided, without these there would still be a lot of possible variety in RAM size, flash size and CPU speed. Herein Intel x86 is missing, but support for this is implied as this is the used architecture for developing Wasmtime. The Nucleo is chosen because this is the reference board for Siemens. The other two are chosen to showcase support for both RTOS and Linux, and ARM and RISC-V.
+As an extra requirement besides the targets, it is important that the interface is designed in such a way that memory usage is limited to the bare needed minimum, to ensure enough RAM left for the application itself.
 

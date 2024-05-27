@@ -78,6 +78,8 @@ At the time of writing, \gls{WASI} is in \texttt{Preview 2}. The flagship featur
 
 The major banner of the upcoming \texttt{0.3} is asynchronous support. The exact details of what this asynchrony entails is yet to be determined. Following up will be a stable 1.0 release.
 
+\newpage
+
 \subsection{Runtimes}
 \label{sec:runtimes}
 % [Wasmtime uitvoerig bespreken, maar ook de meest belangrijke andere runtimes. Het is niet de bedoeling om echt in depth te gaan vergelijken en te benchmarken, maar om gewoon wat te schetsen wat er allemaal is. Daarnaast ook vertellen in welke mate, en hoe, je een preview2 component op een runtime kan laten draaien dat geen support heeft voor het component model. Misschien ook kort iets rond changes die in Wasmtime kunnen gebeuren om meer embedded devices te supporten.]
@@ -103,6 +105,8 @@ In Rust, the standard library, abbreviated as \texttt{std}, is a set of minimal 
 
 Besides these two, there are numerous ones provided by other parties, in varying degrees of completeness, targeting other use-cases. There's for example Jco~\cite{jco}, specialized for JavaScript, componentize.py~\cite{gh:cpy}, for Python, or Chicory~\cite{yt:chicory}, which runs on the Java \gls{VM}. These are out-of-scope for this dissertation.
 
+\newpage
+
 \subsection{Alternatives}
 
 % 2. Bredere exploratie voor alternatieve oplossingen
@@ -116,5 +120,5 @@ In the Node.js ecosystem, the most prominent package available for an \gls{I2C} 
 
 For the web, \texttt{chirimen-drivers}~\cite{chirimen} could be used, but the documentation is completely written in Japanese. Alternatively, combined use of the WebUSB and Web Serial \gls{API} could be done, but unfortunately the Web Serial \gls{API} is only available in Chrome, Edge and Opera.
 
-On Windows, \gls{I2C} communication can be performed via the \\texttt{HIDI2C.sys}~\cite{windows:i2c} driver. Linux allows access to a device from userspace, through the \texttt{/dev}~\cite{linux:i2c} interface. For this, the \texttt{i2c-dev} kernel module needs to be loaded. Each registered adapter gets a number, starting at 0. To start the communication, first the device file needs to be opened and then the target address must be set with \texttt{ioctl(file, I2C\_SLAVE, addr)}. Finally, on macOS the connection is controlled with the \texttt{IOI2CInterface.h}~\cite{macos:i2c} interface inside the \texttt{IOKit} framework.
+On Windows, \gls{I2C} communication can be performed via the \texttt{HIDI2C.sys}~\cite{windows:i2c} driver. Linux allows access to a device from userspace, through the \texttt{/dev}~\cite{linux:i2c} interface. For this, the \texttt{i2c-dev} kernel module needs to be loaded. Each registered adapter gets a number, starting at 0. To start the communication, first the device file needs to be opened and then the target address must be set with \texttt{ioctl(file, I2C\_SLAVE, addr)}. Finally, on macOS the connection is controlled with the \texttt{IOI2CInterface.h}~\cite{macos:i2c} interface inside the \texttt{IOKit} framework.
 

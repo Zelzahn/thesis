@@ -157,14 +157,15 @@
 \pagestyle{empty}
 
 % Download the cover sheet from Plato
-\includepdf{cover-sheet.pdf}
+\includepdf{titel.pdf}
 
 \include{chapters/1_acknowledgment}
 \include{chapters/2_disclaimer}
 \include{chapters/3_abstract/dutch}
 \include{chapters/3_abstract/english}
-\include{chapters/4_extended_abstract/english}
-\include{chapters/4_extended_abstract/dutch}
+\includepdf[pages={1-}]{chapters/4_extended_abstract/dutch.pdf}
+\includepdf[pages={1-}]{chapters/4_extended_abstract/main.pdf}
+% \include{chapters/4_extended_abstract/dutch}
 \tableofcontents\newpage
 \listoffigures\newpage
 \listoftables\newpage
